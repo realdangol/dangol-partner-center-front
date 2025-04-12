@@ -7,10 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "format": "prettier --cache --write .",
+    "postinstall": "husky install"
   },
   "lint-staged": {
-    "*.{js,ts,jsx,tsx}": "eslint --fix"
+    "*.{js,ts,jsx,tsx}": [
+      "pnpm format",
+      "pnpm lint"
+    ],
+    "*.js": "eslint --cache --fix"
   },
   "dependencies": {
     "next": "15.3.0",
