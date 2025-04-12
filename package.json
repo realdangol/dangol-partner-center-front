@@ -12,10 +12,9 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "pnpm format",
-      "pnpm lint"
-    ],
-    "*.js": "eslint --cache --fix"
+      "prettier --cache --write .",
+      "next lint --file"
+    ]
   },
   "dependencies": {
     "next": "15.3.0",
