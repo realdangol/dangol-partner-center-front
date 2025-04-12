@@ -20,6 +20,9 @@ const eslintConfig = [
       ...dangolEsLintConfig.rules,
     },
   },
+  {
+    ignores: ['*.config.js', '*.config.mjs'],
+  },
 ];
 
 export default eslintConfig;
