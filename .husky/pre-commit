@@ -4,7 +4,7 @@ branch_name=$(git rev-parse --abbrev-ref HEAD)
 
 # feature/로 시작하지 않으면 커밋 금지
 if ! echo "$branch_name" | grep -q '^feature/'; then
-  echo "🚫 커밋은 feature/ 브랜치에서만 가능합니다. (현재 브랜치: $branch_name)"
+  echo "🚫 커밋은 'feature/' 브랜치에서만 가능합니다. (현재 브랜치: $branch_name)"
   exit 1
 fi
 
