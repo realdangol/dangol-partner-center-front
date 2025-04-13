@@ -12,10 +12,9 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "pnpm format",
-      "pnpm lint"
-    ],
-    "*.js": "eslint --cache --fix"
+      "prettier --cache --write .",
+      "next lint --file"
+    ]
   },
   "dependencies": {
     "next": "15.3.0",
@@ -23,7 +22,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@dangol-dev/front-eslint-config": "^1.0.0",
+    "@dangol-dev/eslint-plugin": "^1.0.0",
     "@dangol-dev/front-prettier-config": "^1.0.0",
     "@dangol-dev/front-ts-config": "^1.0.0",
     "@eslint/eslintrc": "^3",
