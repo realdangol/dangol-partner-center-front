@@ -17,9 +17,9 @@ importers:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
-      '@dangol-dev/front-eslint-config':
+      '@dangol-dev/eslint-plugin':
         specifier: ^1.0.0
-        version: 1.0.1(@typescript-eslint/eslint-plugin@8.29.1(@typescript-eslint/parser@8.29.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))(@typescript-eslint/parser@8.29.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))(eslint-config-prettier@9.1.0(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-import@2.31.0)(eslint-plugin-jsx-a11y@6.10.2(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-prettier@5.2.6(eslint-config-prettier@9.1.0(eslint@9.24.0(jiti@2.4.2)))(eslint@9.24.0(jiti@2.4.2))(prettier@3.5.3))(eslint-plugin-react-hooks@5.2.0(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-react@7.37.5(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-simple-import-sort@12.1.1(eslint@9.24.0(jiti@2.4.2)))(eslint@9.24.0(jiti@2.4.2))(prettier@3.5.3)
+        version: 1.0.0(eslint@9.24.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)
       '@dangol-dev/front-prettier-config':
         specifier: ^1.0.0
         version: 1.0.0(prettier@3.5.3)
@@ -68,24 +68,12 @@ packages:
       }
     engines: { node: '>=10' }
 
-  '@dangol-dev/front-eslint-config@1.0.1':
+  '@dangol-dev/eslint-plugin@1.0.0':
     resolution:
       {
-        integrity: sha512-yq1YDofXgC5Ul2iobBzUG1OHxLC96JYHB2d9FA4LNvTIrWxnwHafgvO+DU/c/D+1s3GzmWfhYXfDAuwFrhX9EA==,
-        tarball: https://npm.pkg.github.com/download/@dangol-dev/front-eslint-config/1.0.1/98f4273e6d68285d53aceb25df341d929b8e7f0d,
+        integrity: sha512-V6jtu+BjLyg7qPEk1tKsr4oEkCbxNBB09wRvrNArEBx4fpCYmxrTZ+C5Kryjr3KX5XACM7uIZWDMeuFllDHtyg==,
+        tarball: https://npm.pkg.github.com/download/@dangol-dev/eslint-plugin/1.0.0/dfe8e3eae9b60b839def1d8bfd4bc792a7db47be,
       }
-    peerDependencies:
-      '@typescript-eslint/eslint-plugin': ^7.18.0
-      '@typescript-eslint/parser': ^7.18.0
-      eslint: ^9.24.0
-      eslint-config-prettier: ^9.1.0
-      eslint-plugin-import: ^2.31.0
-      eslint-plugin-jsx-a11y: ^6.10.2
-      eslint-plugin-prettier: ^5.2.6
-      eslint-plugin-react: ^7.37.5
-      eslint-plugin-react-hooks: ^4.6.2
-      eslint-plugin-simple-import-sort: ^12.1.1
-      prettier: ^3.5.3
 
   '@dangol-dev/front-prettier-config@1.0.0':
     resolution:
@@ -1405,10 +1393,10 @@ packages:
       typescript:
         optional: true
 
-  eslint-config-prettier@9.1.0:
+  eslint-config-prettier@10.1.2:
     resolution:
       {
-        integrity: sha512-NSWl5BFQWEPi1j4TjVNItzYV7dZXZ+wP6I6ZhrBGpChQhZRUaElihE9uRRkcbRnNb76UMKDF3r+WTmNcGPKsqw==,
+        integrity: sha512-Epgp/EofAUeEpIdZkW60MHKvPyru1ruQJxPL+WIycnaPApuseK0Zpkrh/FwL9oIpQvIhJwV7ptOy0DWUjTlCiA==,
       }
     hasBin: true
     peerDependencies:
@@ -3230,19 +3218,22 @@ packages:
 snapshots:
   '@alloc/quick-lru@5.2.0': {}
 
-  '@dangol-dev/front-eslint-config@1.0.1(@typescript-eslint/eslint-plugin@8.29.1(@typescript-eslint/parser@8.29.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))(@typescript-eslint/parser@8.29.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))(eslint-config-prettier@9.1.0(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-import@2.31.0)(eslint-plugin-jsx-a11y@6.10.2(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-prettier@5.2.6(eslint-config-prettier@9.1.0(eslint@9.24.0(jiti@2.4.2)))(eslint@9.24.0(jiti@2.4.2))(prettier@3.5.3))(eslint-plugin-react-hooks@5.2.0(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-react@7.37.5(eslint@9.24.0(jiti@2.4.2)))(eslint-plugin-simple-import-sort@12.1.1(eslint@9.24.0(jiti@2.4.2)))(eslint@9.24.0(jiti@2.4.2))(prettier@3.5.3)':
+  '@dangol-dev/eslint-plugin@1.0.0(eslint@9.24.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)':
     dependencies:
+      '@dangol-dev/front-prettier-config': 1.0.0(prettier@3.5.3)
       '@typescript-eslint/eslint-plugin': 8.29.1(@typescript-eslint/parser@8.29.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)
       '@typescript-eslint/parser': 8.29.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)
-      eslint: 9.24.0(jiti@2.4.2)
-      eslint-config-prettier: 9.1.0(eslint@9.24.0(jiti@2.4.2))
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.29.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.0)(eslint@9.24.0(jiti@2.4.2))
-      eslint-plugin-jsx-a11y: 6.10.2(eslint@9.24.0(jiti@2.4.2))
-      eslint-plugin-prettier: 5.2.6(eslint-config-prettier@9.1.0(eslint@9.24.0(jiti@2.4.2)))(eslint@9.24.0(jiti@2.4.2))(prettier@3.5.3)
+      eslint-config-prettier: 10.1.2(eslint@9.24.0(jiti@2.4.2))
+      eslint-plugin-prettier: 5.2.6(eslint-config-prettier@10.1.2(eslint@9.24.0(jiti@2.4.2)))(eslint@9.24.0(jiti@2.4.2))(prettier@3.5.3)
       eslint-plugin-react: 7.37.5(eslint@9.24.0(jiti@2.4.2))
       eslint-plugin-react-hooks: 5.2.0(eslint@9.24.0(jiti@2.4.2))
       eslint-plugin-simple-import-sort: 12.1.1(eslint@9.24.0(jiti@2.4.2))
-      prettier: 3.5.3
+    transitivePeerDependencies:
+      - '@types/eslint'
+      - eslint
+      - prettier
+      - supports-color
+      - typescript
 
   '@dangol-dev/front-prettier-config@1.0.0(prettier@3.5.3)':
     dependencies:
@@ -4060,7 +4051,7 @@ snapshots:
       - eslint-plugin-import-x
       - supports-color
 
-  eslint-config-prettier@9.1.0(eslint@9.24.0(jiti@2.4.2)):
+  eslint-config-prettier@10.1.2(eslint@9.24.0(jiti@2.4.2)):
     dependencies:
       eslint: 9.24.0(jiti@2.4.2)
 
@@ -4146,14 +4137,14 @@ snapshots:
       safe-regex-test: 1.1.0
       string.prototype.includes: 2.0.1
 
-  eslint-plugin-prettier@5.2.6(eslint-config-prettier@9.1.0(eslint@9.24.0(jiti@2.4.2)))(eslint@9.24.0(jiti@2.4.2))(prettier@3.5.3):
+  eslint-plugin-prettier@5.2.6(eslint-config-prettier@10.1.2(eslint@9.24.0(jiti@2.4.2)))(eslint@9.24.0(jiti@2.4.2))(prettier@3.5.3):
     dependencies:
       eslint: 9.24.0(jiti@2.4.2)
       prettier: 3.5.3
       prettier-linter-helpers: 1.0.0
       synckit: 0.11.3
     optionalDependencies:
-      eslint-config-prettier: 9.1.0(eslint@9.24.0(jiti@2.4.2))
+      eslint-config-prettier: 10.1.2(eslint@9.24.0(jiti@2.4.2))
 
   eslint-plugin-react-hooks@5.2.0(eslint@9.24.0(jiti@2.4.2)):
     dependencies:

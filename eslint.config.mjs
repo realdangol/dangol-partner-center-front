@@ -1,7 +1,7 @@
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { FlatCompat } from '@eslint/eslintrc';
-import dangolEsLintConfig from '@dangol-dev/front-eslint-config';
+import dangolPlugin from '@dangol-dev/eslint-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -11,18 +11,13 @@ const compat = new FlatCompat({
   recommendedConfig: {
     rules: {},
   },
+  plugins: {
+    '@dangol-dev': dangolPlugin,
+  },
 });
 
 const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript', ...dangolEsLintConfig.extends),
-  {
-    rules: {
-      ...dangolEsLintConfig.rules,
-    },
-  },
-  {
-    ignores: ['*.config.js', '*.config.mjs'],
-  },
+  ...compat.extends('next/core-web-vitals', 'next/typescript', 'plugin:@dangol-dev/recommended'),
 ];
 
 export default eslintConfig;
