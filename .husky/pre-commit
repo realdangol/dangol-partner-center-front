@@ -8,4 +8,4 @@ if ! echo "$branch_name" | grep -q '^feature/'; then
   exit 1
 fi
 
-npx lint-staged
+pnpm lint-staged
