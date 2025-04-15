@@ -23,7 +23,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  var a = '';
+  var b = '';
 
   return (
     <html lang="en">
