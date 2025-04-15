@@ -8,12 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --cache --write .",
-    "postinstall": "husky"
+    "postinstall": "husky",
+    "lint-staged": "lint-staged"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
       "prettier --cache --write .",
-      "next lint --file"
+      "eslint"
     ]
   },
   "dependencies": {
@@ -24,7 +25,7 @@
   "devDependencies": {
     "@dangol-dev/eslint-plugin": "^1.0.0",
     "@dangol-dev/front-prettier-config": "^1.0.0",
-    "@dangol-dev/front-ts-config": "^1.0.0",
+    "@dangol-dev/front-ts-config": "^1.0.1",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
