@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --cache --write .",
-    "postinstall": "husky",
-    "lint-staged": "lint-staged"
+    "postinstall": "husky"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
