@@ -1,3 +1,3 @@
 export const APIPathname = {
-  signup: '/api/user/signup',
+  signup: '/user/signup',
 } as const;
