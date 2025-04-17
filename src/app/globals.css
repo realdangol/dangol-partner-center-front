@@ -1,26 +1,86 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer components {
+  /* --- 디자인 가이드 기반 타이포그래피 스타일 클래스 --- */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* H (타이틀) */
+  .typo-h {
+    @apply text-h font-bold tracking-normal;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* H1 (헤더 페이지 타이틀) */
+  .typo-h1 {
+    @apply text-h1 font-bold tracking-normal;
+  }
+
+  /* H2 (팝업 타이틀 등) */
+  .typo-h2 {
+    @apply text-h2 font-bold tracking-normal;
+  }
+
+  /* H2 Medium (팝업 타이틀 등) */
+  .typo-h2-medium {
+    @apply text-h2 font-medium tracking-normal;
+  }
+
+  /* Body 1 Bold (사이드메뉴 Active 등) */
+  .typo-body1-bold {
+    @apply text-body1 font-bold tracking-tight-custom-1;
+  }
+
+  /* Body 1 Medium (사이드메뉴 Default 등) */
+  .typo-body1-medium {
+    @apply text-body1 font-medium tracking-tight-custom-1;
+  }
+
+  /* Body 1 Regular (본문 등) */
+  .typo-body1-regular {
+    @apply text-body1 font-normal tracking-tight-custom-2;
+  }
+
+  /* Body 2 Bold (사이드메뉴 2뎁스 Active 등) */
+  .typo-body2-bold {
+    @apply text-body2 font-bold tracking-tight-custom-2;
+  }
+
+  /* Body 2 Medium (사이드메뉴 2뎁스 Default 등) */
+  .typo-body2-medium {
+    @apply text-body2 font-medium tracking-tight-custom-2;
+  }
+
+  /* Body 3 Medium (테이블 Head 등) */
+  .typo-body3-medium {
+    @apply text-body3 font-medium tracking-tight-custom-2;
+  }
+
+  /* Body 3 Regular (테이블 Body 등) */
+  .typo-body3-regular {
+    @apply text-body3 font-normal tracking-tight-custom-2;
+  }
+
+  /* Label (폼 요소 등) */
+  .typo-label {
+    @apply text-label font-medium tracking-normal;
+  }
+
+  /* Element 1 (버튼 Large) */
+  .typo-element1 {
+    @apply text-element1 font-bold tracking-normal;
+  }
+
+  /* Element 2 (버튼 Medium) */
+  .typo-element2 {
+    @apply text-element2 font-bold tracking-normal;
+  }
+
+  /* Element 3 (버튼 Small) */
+  .typo-element3 {
+    /* text-label 크기/높이, font-semibold 두께, tracking-normal 자간 */
+    @apply text-label font-semibold tracking-normal;
+  }
+
+  /* underline = underline (텍스트 밑줄) 그대로 클래스명 적으시면 됨 */
+  /* line-through = line-through (텍스트 중앙 취소선) 그대로 클래스명 적으시면 됨 */
 }
