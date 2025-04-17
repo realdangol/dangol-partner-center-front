@@ -10,6 +10,14 @@ type SignUpRequestBody = {
   isPersonalInfoUseAgree: boolean;
 };
 
+type CheckEmailDuplicateBody = {
+  email: string;
+};
+
 export async function signUp(body: SignUpRequestBody) {
-  return await dangolAPI.post(APIPathname.signup, body);
+  return await dangolAPI.post(APIPathname.signUp, body);
+}
+
+export async function checkEmailDuplicate(body: CheckEmailDuplicateBody) {
+  return await dangolAPI.post(APIPathname.checkEmailDuplicate, body);
 }
