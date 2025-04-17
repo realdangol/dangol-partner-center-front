@@ -1,3 +1,5 @@
+'use client';
+
 import type { PropsWithChildren, ReactElement } from 'react';
 import { createContext, useMemo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
