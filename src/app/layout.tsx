@@ -12,7 +12,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <ReactQueryProvider>
+          {children}
+          <div id="dialog"></div>
+        </ReactQueryProvider>
       </body>
     </html>
   );
