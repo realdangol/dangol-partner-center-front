@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/react';
 
+import withProviders from './withProviders';
+
 const preview: Preview = {
   parameters: {
     controls: {
@@ -9,6 +11,7 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [withProviders],
 };
 
 export default preview;

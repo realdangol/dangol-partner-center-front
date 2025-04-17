@@ -18,6 +18,9 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript', 'plugin:@dangol-dev/recommended'),
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+  },
 ];
 
 export default eslintConfig;
