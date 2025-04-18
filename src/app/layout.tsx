@@ -2,6 +2,8 @@ import './globals.css';
 
 import React from 'react';
 
+import { Dialog } from '@/components';
+import { DialogProvider } from '@/components/Dialog/DialogProvider';
 import ReactQueryProvider from '@/lib/react-query/ReactQueryProvider';
 
 export default function RootLayout({
@@ -13,8 +15,10 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <ReactQueryProvider>
-          {children}
-          <div id="dialog"></div>
+          <DialogProvider>
+            {children}
+            <Dialog />
+          </DialogProvider>
         </ReactQueryProvider>
       </body>
     </html>

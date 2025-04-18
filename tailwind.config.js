@@ -4,6 +4,7 @@ module.exports = {
     './src/**/*.{html,js,ts,jsx,tsx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}', // App Router 구조
     './components/**/*.{js,ts,jsx,tsx,mdx}', // 공용 컴포넌트 폴더
+    './.storybook/**/*.{js,ts,jsx,tsx}', // Storybook 폴더
   ],
   theme: {
     extend: {

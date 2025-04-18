@@ -15,16 +15,17 @@
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
       "prettier --cache --write .",
-      "eslint --fix"
+      "eslint --cache --fix"
     ]
   },
   "dependencies": {
     "@tanstack/react-query": "^5.74.3",
-    "axios": "^1.8.4",
     "autoprefixer": "^10.4.21",
+    "axios": "^1.8.4",
     "next": "15.3.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3",
@@ -32,6 +33,7 @@
     "@dangol-dev/front-prettier-config": "^1.0.0",
     "@dangol-dev/front-ts-config": "^1.0.1",
     "@eslint/eslintrc": "^3",
+    "@storybook/addon-docs": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-onboarding": "^8.6.12",
     "@storybook/blocks": "^8.6.12",
