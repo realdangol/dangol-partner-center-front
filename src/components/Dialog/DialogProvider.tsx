@@ -1,6 +1,8 @@
 'use client';
 
+import { usePathname, useSearchParams } from 'next/navigation';
 import type { PropsWithChildren, ReactElement } from 'react';
+import { useEffect } from 'react';
 import { createContext, useMemo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,6 +23,7 @@ type DialogOption = {
 type DialogAction = {
   pushDialog: (dialog: ReactElement, option?: DialogOption) => void;
   popDialog: (key?: string) => void;
+  clearDialogs: () => void;
 };
 
 export const DialogStateContext = createContext<DialogState>({
@@ -30,10 +33,13 @@ export const DialogStateContext = createContext<DialogState>({
 export const DialogActionContext = createContext<DialogAction>({
   pushDialog: () => {},
   popDialog: () => {},
+  clearDialogs: () => {},
 });
 
 export const DialogProvider = ({ children }: PropsWithChildren) => {
   const [dialogs, setDialogs] = useState<DialogType[]>([]);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const actions = useMemo(
     () => ({
@@ -56,9 +62,16 @@ export const DialogProvider = ({ children }: PropsWithChildren) => {
           setDialogs((prev) => prev.filter((_, index) => index < prev.length - 1));
         }
       },
+      clearDialogs: () => {
+        setDialogs([]);
+      },
     }),
     [],
   );
+
+  useEffect(() => {
+    actions.clearDialogs();
+  }, [pathname, searchParams]);
 
   return (
     <DialogStateContext.Provider value={{ dialogs }}>
