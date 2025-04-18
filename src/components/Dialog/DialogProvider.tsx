@@ -46,7 +46,6 @@ export const DialogProvider = ({ children }: PropsWithChildren) => {
         ]);
       },
       popDialog: (key: string) => {
-        // setDialogs((prev) => prev.filter((_, index) => index < prev.length - 1));
         setDialogs((prev) => prev.filter((dialog) => dialog.key !== key));
       },
     }),
