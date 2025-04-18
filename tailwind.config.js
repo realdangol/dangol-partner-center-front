@@ -8,51 +8,42 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // 여기에 커스텀 색상 팔레트를 추가합니다.
       colors: {
-        // --- Basic ---
-        white: '#ffffff', // 필요하다면 주석 해제
-
-        // --- Brand & Secondary Color ---
+        white: '#ffffff',
         brand: {
-          100: '#EFE6FA', // --color-brand-100
-          200: '#DFCDF4', // --color-brand-200
-          300: '#CFB5EF', // --color-brand-300
-          400: '#BF9CEA', // --color-brand-400
-          500: '#A975EB', // --color-brand-500
-          600: '#8E52DB', // --color-brand-600
-          700: '#6E21D1', // --color-brand-700
+          100: '#FCEFEA',
+          200: '#F9E0D5',
+          300: '#F4CCBA',
+          400: '#F2BFA9',
+          500: '#EDA587',
+          600: '#E78B64',
+          700: '#E27242',
         },
-
-        // --- Neutral Color ---
         neutral: {
-          100: '#F4F4F4', // --color-neutral-100
-          200: '#E3E3E3', // --color-neutral-200
-          300: '#D1D1D1', // --color-neutral-300
-          400: '#B0B0B0', // --color-neutral-400
-          500: '#8E8E8E', // --color-neutral-500
-          600: '#686868', // --color-neutral-600  (제공된 코드 기준)
-          700: '#4E4E4E', // --color-neutral-700
-          800: '#1D1E1E', // --color-neutral-800
+          100: '#F4F4F4',
+          200: '#E3E3E3',
+          300: '#D1D1D1',
+          400: '#B0B0B0',
+          500: '#8E8E8E',
+          600: '#686868',
+          700: '#4E4E4E',
+          800: '#1D1E1E',
         },
-
-        // --- Semantic Color ---
         error: {
-          100: '#FEDDD8', // --color-error-100 (제공된 코드 기준)
-          200: '#FDBAB1', // --color-error-200
-          300: '#FC988A', // --color-error-300
-          400: '#FB7563', // --color-error-400
-          500: '#FA533C', // --color-error-500
-          600: '#F83015', // --color-error-600
+          100: '#FEDDD8',
+          200: '#FDBAB1',
+          300: '#FC988A',
+          400: '#FB7563',
+          500: '#FA533C',
+          600: '#F83015',
         },
-
         success: {
-          100: '#F1F9EE', // --color-success-100
-          200: '#E3F3E1', // --color-success-200
-          300: '#C4E8C6', // --color-success-300
-          400: '#A3DCAA', // --color-success-400
-          500: '#82CE8F', // --color-success-500
-          600: '#59C173', // --color-success-600
+          100: '#F1F9EE',
+          200: '#E3F3E1',
+          300: '#C4E8C6',
+          400: '#A3DCAA',
+          500: '#82CE8F',
+          600: '#59C173',
         },
       },
       fontSize: {
@@ -69,9 +60,6 @@ module.exports = {
       },
       fontWeight: {
         regular: '400',
-        medium: '500',
-        semibold: '600',
-        bold: '700',
       },
       letterSpacing: {
         normal: '0em', // 0px
@@ -79,7 +67,7 @@ module.exports = {
         'tight-custom-2': '-0.0125em', // -0.2px
       },
       fontFamily: {
-        sans: ['var(--font-pretendard)'],
+        sans: ['Pretendard'],
       },
     },
   },
