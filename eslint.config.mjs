@@ -21,6 +21,13 @@ const eslintConfig = [
   {
     files: ['**/*.ts', '**/*.tsx'],
   },
+  {
+    files: ['**/*.stories.*'],
+    rules: {
+      'no-unused-vars': 'off',
+      'react-hooks/rules-of-hooks': 'off',
+    },
+  },
 ];
 
 export default eslintConfig;

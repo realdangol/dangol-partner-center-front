@@ -20,7 +20,7 @@ type DialogOption = {
 
 type DialogAction = {
   pushDialog: (dialog: ReactElement, option?: DialogOption) => void;
-  popDialog: (key: string) => void;
+  popDialog: (key?: string) => void;
 };
 
 export const DialogStateContext = createContext<DialogState>({
@@ -49,8 +49,12 @@ export const DialogProvider = ({ children }: PropsWithChildren) => {
           },
         ]);
       },
-      popDialog: (key: string) => {
-        setDialogs((prev) => prev.filter((dialog) => dialog.key !== key));
+      popDialog: (key?: string) => {
+        if (key) {
+          setDialogs((prev) => prev.filter((dialog) => dialog.key !== key));
+        } else {
+          setDialogs((prev) => prev.filter((_, index) => index < prev.length - 1));
+        }
       },
     }),
     [],

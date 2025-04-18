@@ -10,7 +10,7 @@ const useDialog = () => {
     pushDialog(dialog);
   };
 
-  const closeDialog = (key: string) => {
+  const closeDialog = (key?: string) => {
     popDialog(key);
   };
 
