@@ -14,8 +14,12 @@ type DialogState = {
   dialogs: DialogType[];
 };
 
+type DialogOption = {
+  withCloseButton?: boolean;
+};
+
 type DialogAction = {
-  pushDialog: (dialog: ReactElement) => void;
+  pushDialog: (dialog: ReactElement, option?: DialogOption) => void;
   popDialog: (key: string) => void;
 };
 
@@ -33,7 +37,7 @@ export const DialogProvider = ({ children }: PropsWithChildren) => {
 
   const actions = useMemo(
     () => ({
-      pushDialog: (dialog: ReactElement, withCloseButton: boolean = true) => {
+      pushDialog: (dialog: ReactElement, option: DialogOption = { withCloseButton: true }) => {
         const id = uuidv4();
 
         setDialogs((prev) => [
@@ -41,7 +45,7 @@ export const DialogProvider = ({ children }: PropsWithChildren) => {
           {
             Component: dialog,
             key: id,
-            withCloseButton,
+            withCloseButton: option.withCloseButton,
           },
         ]);
       },

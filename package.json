@@ -33,6 +33,7 @@
     "@dangol-dev/front-prettier-config": "^1.0.0",
     "@dangol-dev/front-ts-config": "^1.0.1",
     "@eslint/eslintrc": "^3",
+    "@storybook/addon-docs": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-onboarding": "^8.6.12",
     "@storybook/blocks": "^8.6.12",
