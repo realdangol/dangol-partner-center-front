@@ -5,7 +5,7 @@ import Dialog from './Dialog';
 import useDialog from './useDialog';
 
 const meta: Meta<typeof Dialog> = {
-  title: 'Common/Dialog',
+  title: 'common/Dialog',
   component: Dialog,
 };
 

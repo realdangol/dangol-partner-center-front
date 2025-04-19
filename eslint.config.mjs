@@ -28,6 +28,12 @@ const eslintConfig = [
       'react-hooks/rules-of-hooks': 'off',
     },
   },
+  {
+    rules: {
+      '@typescript-eslint/no-empty-object-type': 'off',
+      'react/display-name': 'off',
+    },
+  },
 ];
 
 export default eslintConfig;
