@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Button from './Button';
+import FloatingActionButton from './Fab';
 
 const Icon = () => {
   return (
@@ -17,19 +17,14 @@ const Icon = () => {
   );
 };
 
-const meta: Meta<typeof Button> = {
-  title: 'common/Button',
-  component: Button,
+const meta: Meta<typeof FloatingActionButton> = {
+  title: 'Common/Fab',
+  component: FloatingActionButton,
   argTypes: {
     variant: {
       control: 'select',
-      options: ['fillPrimary', 'fillNeutral', 'outlinePrimary', 'outlineNeutral'],
+      options: ['circular', 'extended'],
       description: '버튼 모양',
-    },
-    size: {
-      control: 'select',
-      options: ['large', 'medium', 'small'],
-      description: '버튼 크기',
     },
     leftIcon: {
       control: 'select',
@@ -54,11 +49,12 @@ const meta: Meta<typeof Button> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof FloatingActionButton>;
 
 export const Usage: Story = {
   args: {
-    children: 'Button',
+    variant: 'extended',
+    children: 'Text',
     onClick: action('Click'),
   },
 };

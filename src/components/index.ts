@@ -1,1 +1,3 @@
+export { default as Button } from './Button/Button';
 export { default as Dialog } from './Dialog/DialogRenderer';
+export { default as Fab } from './Fab/Fab';
