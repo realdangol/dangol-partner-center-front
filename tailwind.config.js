@@ -14,13 +14,13 @@ module.exports = {
 
         // --- Brand & Secondary Color ---
         brand: {
-          100: '#EFE6FA', // --color-brand-100
-          200: '#DFCDF4', // --color-brand-200
-          300: '#CFB5EF', // --color-brand-300
-          400: '#BF9CEA', // --color-brand-400
-          500: '#A975EB', // --color-brand-500
-          600: '#8E52DB', // --color-brand-600
-          700: '#6E21D1', // --color-brand-700
+          100: '#FCEFEA', // --color-brand-100
+          200: '#F9E0D5', // --color-brand-200
+          300: '#F4CCBA', // --color-brand-300
+          400: '#F2BFA9', // --color-brand-400
+          500: '#EDA587', // --color-brand-500
+          600: '#E78B64', // --color-brand-600
+          700: '#E27242', // --color-brand-700
         },
 
         // --- Neutral Color ---
