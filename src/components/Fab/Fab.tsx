@@ -10,7 +10,7 @@ type Props = {
 
 const Fab = ({ variant = 'circular', children, leftIcon, rightIcon, ...restProps }: Props) => {
   const base =
-    'relative h-12 flex items-center justify-center gap-1 bg-brand-700 text-white typo-body1-medium shadow-[0_2px_4px_0_#00000033] overflow-hidden disabled:bg-brand-400 disabled:cursor-not-allowed';
+    'relative h-12 flex items-center justify-center gap-1 bg-brand-700 text-white typo-body1-medium shadow-[0_2px_4px_0_#00000033] overflow-hidden disabled:bg-brand-400 disabled:cursor-not-allowed hover:bg-[#D27047]';
 
   const variantClass = {
     circular: 'w-12 rounded-full',
@@ -31,7 +31,10 @@ const Fab = ({ variant = 'circular', children, leftIcon, rightIcon, ...restProps
       )}
       {...restProps}
     >
-      <span className="absolute top-0 left-0 inline-block w-full h-full bg-black opacity-0 active:opacity-30" />
+      <span
+        className="absolute top-0 left-0 inline-block w-full h-full bg-black opacity-0 active:opacity-30"
+        role="presentation"
+      />
       {leftIcon}
       {children}
       {rightIcon}

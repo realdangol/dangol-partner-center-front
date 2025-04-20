@@ -17,10 +17,11 @@ const Button = ({
   rightIcon,
   ...restProps
 }: Props) => {
-  const base = 'flex items-center gap-1 typo-body1-medium disabled:cursor-not-allowed';
+  const base =
+    'relative flex items-center gap-1 typo-body1-medium overflow-hidden disabled:cursor-not-allowed';
 
   const variantClass = {
-    fillPrimary: 'bg-brand-700 text-white disabled:bg-brand-400',
+    fillPrimary: 'bg-brand-700 text-white disabled:bg-brand-400 hover:bg-[#D27047]',
     fillNeutral: 'bg-neutral-200 text-neutral-600',
     outlinePrimary:
       'bg-white border border-brand-700 text-brand-700 disabled:border-brand-400 disabled:text-brand-400',
@@ -45,6 +46,15 @@ const Button = ({
     small: 'pr-2',
   }[size];
 
+  const interactionBase = 'absolute top-0 left-0 inline-block w-full h-full bg-black opacity-0';
+
+  const activeVariantBase = {
+    fillPrimary: 'active:opacity-[0.33]',
+    fillNeutral: 'active:opacity-[0.33]',
+    outlinePrimary: 'active:opacity-10',
+    outlineNeutral: 'active:opacity-10',
+  }[variant];
+
   return (
     <button
       className={clsx(
@@ -56,6 +66,7 @@ const Button = ({
       )}
       {...restProps}
     >
+      <span className={clsx(interactionBase, activeVariantBase)} role="presentation" />
       {leftIcon}
       {children}
       {rightIcon}
