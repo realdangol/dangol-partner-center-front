@@ -32,6 +32,7 @@ const eslintConfig = [
     rules: {
       '@typescript-eslint/no-empty-object-type': 'off',
       'react/display-name': 'off',
+      '@next/next/no-img-element': 'warn',
     },
   },
 ];

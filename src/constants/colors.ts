@@ -29,4 +29,9 @@ const colors = {
   success600: '#59C173',
 } as const;
 
+export const colorOptions = Object.keys(colors).reduce((options: string[], color) => {
+  if (color === 'white') return options;
+  return [...options, color.replace(/(brand|neutral|error|success)(\d+)/, '$1-$2')];
+}, []);
+
 export default colors;
