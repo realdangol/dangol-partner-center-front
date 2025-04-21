@@ -1,5 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  safelist: [
+    {
+      pattern:
+        /^(bg|text|border)-(brand|neutral|error|success)-(100|200|300|400|500|600|700|800|900)$/,
+    },
+  ],
   content: [
     './src/**/*.{html,js,ts,jsx,tsx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}', // App Router 구조
