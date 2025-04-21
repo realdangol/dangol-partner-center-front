@@ -18,7 +18,7 @@ const Button = ({
   ...restProps
 }: Props) => {
   const base =
-    'relative flex items-center gap-1 typo-body1-medium overflow-hidden disabled:cursor-not-allowed';
+    'relative flex items-center justify-center gap-1 typo-body1-medium overflow-hidden disabled:cursor-not-allowed';
 
   const variantClass = {
     fillPrimary: 'bg-brand-700 text-white disabled:bg-brand-400 hover:bg-[#D27047]',
@@ -57,14 +57,15 @@ const Button = ({
 
   return (
     <button
+      {...restProps}
       className={clsx(
         base,
         variantClass,
         sizeClass,
         !!leftIcon && leftIconClass,
         !!rightIcon && rightIconClass,
+        restProps.className,
       )}
-      {...restProps}
     >
       <span className={clsx(interactionBase, activeVariantBase)} role="presentation" />
       {leftIcon}
