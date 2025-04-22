@@ -6,10 +6,12 @@ import { useRouter } from 'next/navigation';
 import type { FormEventHandler } from 'react';
 import React, { useRef, useState } from 'react';
 
-import { Button, Divider, Input } from '@/components';
+import { Divider, Input } from '@/components';
 import { dangolPathname } from '@/constants/pathname';
 import { emailRegex, passwordRegex } from '@/constants/regex';
 import { useLogin } from '@/services/auth/useAuthQuery';
+
+import { AuthSubmitButton } from '../_components';
 
 const LoginPage = () => {
   const router = useRouter();
@@ -79,9 +81,7 @@ const LoginPage = () => {
           />
           {/* 로그인 유지 체크박스 */}
         </div>
-        <Button className="!h-14 !rounded" disabled={isPending}>
-          로그인
-        </Button>
+        <AuthSubmitButton disabled={isPending}>로그인</AuthSubmitButton>
       </form>
       <div className="mt-8 flex items-center justify-center gap-4 typo-body1-regular text-neutral-800">
         <Link href={dangolPathname.findEmail} prefetch={false}>
