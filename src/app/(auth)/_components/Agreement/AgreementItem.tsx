@@ -3,44 +3,45 @@
 import React from 'react';
 
 import { ArrowRight } from '@/components/Icon';
+import {
+  chkBoxLabelId,
+  chkBoxLabelSapn,
+  chkBoxLabelText,
+  chkBoxRequired,
+} from '@/constants/checkbox';
+
+type AgreementCategory = 'service' | 'privacy' | 'sms' | 'marketing';
 
 interface AgreementItemProps {
-  id: string;
+  category: AgreementCategory;
   checked: boolean;
   onChange: (checked: boolean) => void;
-  label: string;
-  span: string;
-  required?: boolean;
   onOpenDialog?: () => void;
 }
 
-const AgreementItem = ({
-  id,
-  checked,
-  onChange,
-  label,
-  span,
-  required = false,
-  onOpenDialog,
-}: AgreementItemProps) => {
+const AgreementItem = ({ category, checked, onChange, onOpenDialog }: AgreementItemProps) => {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center space-x-2">
+        {/* 체크박스 컴포넌트로 대체 예정 */}
         <input
           type="checkbox"
-          id={id}
+          id={chkBoxLabelId[category]}
           className="h-4 w-4 rounded border-neutral-300"
           checked={checked}
           onChange={(e) => onChange(e.target.checked)}
-          required={required}
+          required={chkBoxRequired[category]}
         />
-        <label htmlFor={id} className="typo-body1-regular">
-          {label}
-          <span className="text-neutral-700">{span}</span>
+        <label
+          htmlFor={chkBoxLabelId[category]}
+          className={`typo-body1-regular ${!chkBoxRequired[category] ? 'text-neutral-700' : ''}`}
+        >
+          {chkBoxLabelText[category]}
+          <span className="text-neutral-700">{chkBoxLabelSapn[category]}</span>
         </label>
       </div>
       <div
-        className="flex h-8 w-8 items-center justify-center rounded-md text-gray-500 cursor-pointer"
+        className="flex h-8 w-8 items-center justify-center rounded-md text-neutral-300 cursor-pointer"
         onClick={onOpenDialog}
       >
         <ArrowRight size="16" />

@@ -8,15 +8,13 @@ import useDialog from '@/components/Dialog/useDialog';
 import AgreementAllCheckbox from '../_components/Agreement/AgreementAllCheckbox';
 import AgreementItem from '../_components/Agreement/AgreementItem';
 
-const termsOptions = [
-  { id: 'service', label: '(필수) ', span: '서비스 이용약관동의', required: true },
-  { id: 'privacy', label: '(필수) ', span: '개인정보수집 및 이용동의', required: true },
-  { id: 'sms', label: '(필수) ', span: '문자서비스 이용약관 동의', required: true },
-];
+type AgreementCategory = 'service' | 'privacy' | 'sms' | 'marketing';
+type AgreementsState = Record<AgreementCategory | 'all', boolean>;
+const termsOptions: AgreementCategory[] = ['service', 'privacy', 'sms'];
 
 const UserJoinPage = () => {
   // 정보동의 체크
-  const [agreements, setAgreements] = useState({
+  const [agreements, setAgreements] = useState<AgreementsState>({
     all: false,
     service: false,
     privacy: false,
@@ -36,7 +34,7 @@ const UserJoinPage = () => {
   };
 
   // key 값 개별 동의 함수
-  const handleSingleChange = (key: string, checked: boolean) => {
+  const handleSingleChange = (key: AgreementCategory, checked: boolean) => {
     const newAgreements = { ...agreements, [key]: checked };
 
     const allChecked =
@@ -51,6 +49,7 @@ const UserJoinPage = () => {
   const { openDialog } = useDialog();
 
   const isNextEnabled = agreements.service && agreements.privacy && agreements.sms;
+
   return (
     <div className="mt-8">
       <p className="mb-8 typo-h2">찐단골 관리자 약관동의</p>
@@ -61,27 +60,19 @@ const UserJoinPage = () => {
         <div className="space-y-4 pl-4 pr-4">
           {termsOptions.map((term) => (
             <AgreementItem
-              key={term.id}
-              id={term.id}
-              label={term.label}
-              span={term.span}
-              checked={agreements[term.id as keyof typeof agreements]}
-              onChange={(checked) => handleSingleChange(term.id, checked)}
-              required={term.required}
+              key={term}
+              category={term}
+              checked={agreements[term]}
+              onChange={(checked) => handleSingleChange(term, checked)}
               onOpenDialog={() => openDialog()}
             />
           ))}
-
-          <Divider color="neutral-200" />
-
+          <Divider color="neutral-200" style={{ marginTop: '32px' }} />
           <AgreementItem
             key="marketing"
-            id="marketing"
-            label=""
-            span="(선택) 광고성 정보 수신 동의"
+            category="marketing"
             checked={agreements.marketing}
             onChange={(checked) => handleSingleChange('marketing', checked)}
-            required={false}
             onOpenDialog={() => openDialog()}
           />
         </div>
@@ -89,6 +80,7 @@ const UserJoinPage = () => {
           <Button
             className="w-[542px] h-[48px] !rounded"
             variant={isNextEnabled ? 'fillPrimary' : 'fillNeutral'}
+            disabled={!isNextEnabled}
           >
             다음
           </Button>

@@ -9,6 +9,7 @@ const AgreementAllCheckbox = ({ checked, onChange }: AgreementAllCheckboxProps) 
   return (
     <div className="w-[550px] h-[56px] rounded-[4px] border border-neutral-200 p-[16px] gap-[8px] flex">
       <div className="flex items-center space-x-2">
+        {/* 체크박스 컴포넌트로 대체 예정 */}
         <input
           type="checkbox"
           id="all"
