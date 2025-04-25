@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Checkbox } from './CheckBox';
+import { CheckBox } from '..';
 
-const meta: Meta<typeof Checkbox> = {
+const meta: Meta<typeof CheckBox> = {
   title: 'common/CheckBox',
-  component: Checkbox,
+  component: CheckBox,
   argTypes: {
     label: {
       control: 'text',
@@ -36,6 +36,7 @@ export const Checked: Story = {
   args: {
     label: '체크됨',
     checked: true,
+    disabled: true,
   },
 };
 

@@ -35,7 +35,7 @@ export const Usage: Story = {
 
 export const IconList = () => {
   return (
-    <div className="flex gap-8 flex-wrap">
+    <div className="flex flex-wrap gap-8">
       {Object.entries(Icons).map(([name, Icon]) => (
         <div key={name} className="flex flex-col items-center gap-1">
           <p>{name}</p>
