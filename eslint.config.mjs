@@ -35,6 +35,9 @@ const eslintConfig = [
       '@next/next/no-img-element': 'warn',
     },
   },
+  {
+    ignores: ['*.config.js'],
+  },
 ];
 
 export default eslintConfig;

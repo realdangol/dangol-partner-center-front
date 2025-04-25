@@ -57,7 +57,9 @@
     "lint-staged": "^15.5.1",
     "playwright": "^1.51.1",
     "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "storybook": "^8.6.12",
+    "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "3.4.13",
     "typescript": "^5",
     "vitest": "^3.1.1"
