@@ -1,6 +1,6 @@
 import './globals.css';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import { Dialog } from '@/components';
 import { DialogProvider } from '@/components/Dialog/DialogProvider';
@@ -15,10 +15,12 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <ReactQueryProvider>
-          <DialogProvider>
-            {children}
-            <Dialog />
-          </DialogProvider>
+          <Suspense>
+            <DialogProvider>
+              {children}
+              <Dialog />
+            </DialogProvider>
+          </Suspense>
         </ReactQueryProvider>
       </body>
     </html>
