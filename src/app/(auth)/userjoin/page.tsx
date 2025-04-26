@@ -36,7 +36,7 @@ const UserJoinPage = () => {
     });
   };
 
-  const toggleAgreementItem = (key: AgreementCategory) => {
+  const toggleAgreementItem = (key: AgreementCategory) => () => {
     setAgreements((prev) => ({
       ...prev,
       [key]: !prev[key],
@@ -48,7 +48,7 @@ const UserJoinPage = () => {
       <p className="mb-8 typo-h2">찐단골 관리자 약관동의</p>
       <div className="space-y-8">
         {/* 전체 동의 */}
-        <div className="w-[550px] h-[56px] rounded-[4px] border border-neutral-200 p-[16px] gap-[8px] flex">
+        <div className="rounded-md border border-neutral-200 p-4 gap-[8px] flex">
           <Checkbox label="전체동의" id="all" checked={isAllChecked} onChange={toggleAll} />
         </div>
 
@@ -62,7 +62,7 @@ const UserJoinPage = () => {
               <AgreementItem
                 category={term}
                 checked={agreements[term]}
-                onChange={() => toggleAgreementItem(term)}
+                onChange={toggleAgreementItem(term)}
               />
             </React.Fragment>
           ))}
