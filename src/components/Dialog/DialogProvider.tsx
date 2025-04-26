@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { createContext, useMemo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
+import type { DialogOption } from './types';
+
 type DialogType = {
   Component: ReactElement;
   key: string;
@@ -14,10 +16,6 @@ type DialogType = {
 
 type DialogState = {
   dialogs: DialogType[];
-};
-
-type DialogOption = {
-  withCloseButton?: boolean;
 };
 
 type DialogAction = {

@@ -88,7 +88,7 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
             {textLength}/{inputProps.maxLength}
           </p>
         )}
-        {helperText && (
+        {helperText?.value && (
           <p
             className={`text-${error ? 'error-600' : (helperText?.color ?? 'neutral-800')} typo-element3`}
           >
