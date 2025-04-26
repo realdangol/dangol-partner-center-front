@@ -13,7 +13,7 @@ type DialogCloseButtonProps = {
 const DialogCloseButton = ({ onClose }: DialogCloseButtonProps) => {
   return (
     <svg
-      className="absolute top-6 right-8 cursor-pointer"
+      className="absolute right-8 top-6 cursor-pointer"
       width="24"
       height="24"
       viewBox="0 0 24 24"

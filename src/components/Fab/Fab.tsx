@@ -32,7 +32,7 @@ const Fab = ({ variant = 'circular', children, leftIcon, rightIcon, ...restProps
       {...restProps}
     >
       <span
-        className="absolute top-0 left-0 inline-block w-full h-full bg-black opacity-0 active:opacity-30"
+        className="absolute left-0 top-0 inline-block h-full w-full bg-black opacity-0 active:opacity-30"
         role="presentation"
       />
       {leftIcon}

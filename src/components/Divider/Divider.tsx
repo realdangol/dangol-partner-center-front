@@ -12,7 +12,7 @@ type Props = {
 const Divider = ({ orientation = 'horizontal', color = 'neutral-800', style }: Props) => {
   return (
     <hr
-      className={`border-${color} ${orientation === 'horizontal' ? 'w-full' : 'h-auto self-stretch border-t-0 border-l'}`}
+      className={`border-${color} ${orientation === 'horizontal' ? 'w-full' : 'h-auto self-stretch border-l border-t-0'}`}
       style={style}
     />
   );
