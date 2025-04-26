@@ -36,7 +36,7 @@ const UserJoinPage = () => {
     });
   };
 
-  const handleSingleChange = (key: AgreementCategory) => {
+  const toggleAgreementItem = (key: AgreementCategory) => {
     setAgreements((prev) => ({
       ...prev,
       [key]: !prev[key],
@@ -62,7 +62,7 @@ const UserJoinPage = () => {
               <AgreementItem
                 category={term}
                 checked={agreements[term]}
-                onChange={() => handleSingleChange(term)}
+                onChange={() => toggleAgreementItem(term)}
               />
             </React.Fragment>
           ))}
