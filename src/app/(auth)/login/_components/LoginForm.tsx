@@ -34,13 +34,17 @@ const LoginForm = () => {
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const [keepLogin, setKeepLogin] = useState(false);
   const [error, setError] = useState(initialErrorMessage);
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
 
   const clearErrors = () => {
     setError(initialErrorMessage);
   };
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = () => {
+    if (!emailInputRef.current || !passwordInputRef.current) return;
+
     clearErrors();
+    setSubmitButtonDisabled(!emailInputRef.current.value && !passwordInputRef.current.value);
   };
 
   const checkValidation = (email: string, password: string) => {
@@ -146,7 +150,7 @@ const LoginForm = () => {
           onChange={() => setKeepLogin(!keepLogin)}
         />
       </div>
-      <AuthSubmitButton disabled={isPending}>로그인</AuthSubmitButton>
+      <AuthSubmitButton disabled={submitButtonDisabled || isPending}>로그인</AuthSubmitButton>
     </form>
   );
 };
