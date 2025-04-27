@@ -1,44 +1,32 @@
 import { APIPathname } from '@/constants/pathname';
-import { dangolAPI } from '@/lib/axios';
+import DangolAPIClient from '@/lib/axios/DangolAPIClient';
 
-type SignUpRequestBody = {
-  email: string;
-  password: string;
-  name: string;
-  phoneNumber: string;
-  isPersonalInfoCollectionAgree: boolean;
-  isPersonalInfoUseAgree: boolean;
-};
-
-type CheckEmailDuplicateRequestBody = {
-  email: string;
-};
-
-type FindEmailRequestBody = {
-  name: string;
-  phoneNumber: string;
-};
-
-type VerifyEmailForPasswordResetRequestBody = {};
-
-type ResetPasswordRequestBody = {};
+import type {
+  CheckEmailDuplicateRequestBody,
+  FindEmailRequestBody,
+  FindEmailResponseBody,
+  ResetPasswordRequestBody,
+  SignUpRequestBody,
+  SignUpResponseBody,
+  VerifyEmailForPasswordResetRequestBody,
+} from './types';
 
 export async function signUp(body: SignUpRequestBody) {
-  return await dangolAPI.post(APIPathname.signUp, body);
+  return await DangolAPIClient.post<SignUpResponseBody>(APIPathname.signUp, body);
 }
 
 export async function checkEmailDuplicate(body: CheckEmailDuplicateRequestBody) {
-  return await dangolAPI.post(APIPathname.checkEmailDuplicate, body);
+  return await DangolAPIClient.post<true>(APIPathname.checkEmailDuplicate, body);
 }
 
 export async function findEmail(body: FindEmailRequestBody) {
-  return await dangolAPI.post(APIPathname.findEmail, body);
+  return await DangolAPIClient.post<FindEmailResponseBody>(APIPathname.findEmail, body);
 }
 
 export async function verifyEmailForPasswordReset(body: VerifyEmailForPasswordResetRequestBody) {
-  return await dangolAPI.post(APIPathname.verifyEmailForPasswordReset, body);
+  return await DangolAPIClient.post(APIPathname.verifyEmailForPasswordReset, body);
 }
 
 export async function resetPassword(body: ResetPasswordRequestBody) {
-  return await dangolAPI.post(APIPathname.resetPassword, body);
+  return await DangolAPIClient.post(APIPathname.resetPassword, body);
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { AxiosError } from 'axios';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import type { ChangeEventHandler, FormEventHandler } from 'react';
 import React, { useRef, useState } from 'react';
@@ -82,9 +82,10 @@ const LoginForm = () => {
         email: emailInputRef.current.value,
         password: passwordInputRef.current.value,
       });
+      // 로그인 성공 후 처리 필요..
       router.replace(dangolPathname.home);
     } catch (e) {
-      if (e instanceof AxiosError) {
+      if (axios.isAxiosError(e)) {
         switch (e.status) {
           case errorCode.Login.UserNotFound:
             setError({
