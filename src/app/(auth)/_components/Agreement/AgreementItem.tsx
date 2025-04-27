@@ -76,7 +76,7 @@ const AgreementItem = ({ category, checked, onChange }: AgreementItemProps) => {
         />
       </div>
       <div
-        className="flex h-8 w-8 items-center justify-center rounded-md text-neutral-300 cursor-pointer"
+        className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-neutral-300"
         onClick={() => openDialog(category)}
       >
         <ArrowRight size="16" />

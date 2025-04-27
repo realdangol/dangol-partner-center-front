@@ -45,10 +45,10 @@ const UserJoinPage = () => {
 
   return (
     <div className="mt-8">
-      <p className="mb-8 typo-h2">찐단골 관리자 약관동의</p>
+      <p className="typo-h2 mb-8">찐단골 관리자 약관동의</p>
       <div className="space-y-8">
         {/* 전체 동의 */}
-        <div className="rounded-md border border-neutral-200 p-4 gap-[8px] flex">
+        <div className="flex gap-[8px] rounded-md border border-neutral-200 p-4">
           <Checkbox label="전체동의" id="all" checked={isAllChecked} onChange={toggleAll} />
         </div>
 
@@ -71,7 +71,7 @@ const UserJoinPage = () => {
         {/* 다음 버튼 */}
         <div className="flex justify-center">
           <Button
-            className="w-[542px] h-[48px] !rounded"
+            className="h-[48px] w-[542px] !rounded"
             variant={isNextEnabled ? 'fillPrimary' : 'fillNeutral'}
             disabled={!isNextEnabled}
           >
