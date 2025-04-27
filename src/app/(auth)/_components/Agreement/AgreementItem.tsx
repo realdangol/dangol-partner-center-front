@@ -2,8 +2,8 @@
 
 import React from 'react';
 
-import { Checkbox } from '@/components/CheckBox/CheckBox';
-import useDialog from '@/components/Dialog/useDialog';
+import { CheckBox } from '@/components';
+// import useDialog from '@/components/Dialog/useDialog';
 import { ArrowRight } from '@/components/Icon';
 
 export type AgreementCategory = 'service' | 'privacy' | 'sms' | 'marketing';
@@ -50,13 +50,13 @@ export const agreementMeta: Record<
 };
 
 const AgreementItem = ({ category, checked, onChange }: AgreementItemProps) => {
-  const { openDialog } = useDialog();
+  // const { openDialog } = useDialog();
   const meta = agreementMeta[category];
 
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center space-x-2">
-        <Checkbox
+        <CheckBox
           id={meta.id}
           checked={checked}
           onChange={onChange}
@@ -77,7 +77,7 @@ const AgreementItem = ({ category, checked, onChange }: AgreementItemProps) => {
       </div>
       <div
         className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-neutral-300"
-        onClick={() => openDialog(category)}
+        // onClick={() => openDialog(category)}
       >
         <ArrowRight size="16" />
       </div>
