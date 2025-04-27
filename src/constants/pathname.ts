@@ -2,15 +2,18 @@ export const dangolPathname = {
   home: '/',
   login: '/login',
   signUp: '/userjoin',
-  findEmail: '/find-email',
-  findPassword: '/find-password',
+  findAccount: '/find-account',
 } as const;
 
 export const APIPathname = {
   // user
   signUp: '/user/signup',
   checkEmailDuplicate: '/user/check/email',
+  findEmail: '/user/recovery/email',
+  verifyEmailForPasswordReset: '/user/certification/password',
+  resetPassword: '/user/recovery/password',
 
   // auth
   login: '/auth/login',
+  logout: '/auth/logout',
 } as const;

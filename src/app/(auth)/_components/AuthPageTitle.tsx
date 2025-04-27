@@ -11,6 +11,7 @@ const AuthPageTitle = () => {
   const pathnameTitleMap = {
     [dangolPathname.login]: '관리자 로그인',
     [dangolPathname.signUp]: '회원가입',
+    [dangolPathname.findAccount]: '이메일/비밀번호 찾기',
   };
 
   return <h1 className="typo-h text-neutral-800">{pathnameTitleMap[pathname]}</h1>;

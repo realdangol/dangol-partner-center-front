@@ -9,3 +9,7 @@ type LoginRequestBody = {
 export async function login(body: LoginRequestBody) {
   return await dangolAPI.post(APIPathname.login, body);
 }
+
+export async function logout() {
+  return await dangolAPI.post(APIPathname.logout);
+}

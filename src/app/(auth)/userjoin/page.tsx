@@ -2,8 +2,7 @@
 
 import React, { useState } from 'react';
 
-import { Button, Divider } from '@/components';
-import { Checkbox } from '@/components/CheckBox/CheckBox';
+import { Button, CheckBox, Divider } from '@/components';
 
 import type { AgreementCategory } from '../_components/Agreement/AgreementItem';
 import AgreementItem from '../_components/Agreement/AgreementItem';
@@ -49,7 +48,7 @@ const UserJoinPage = () => {
       <div className="space-y-8">
         {/* 전체 동의 */}
         <div className="flex gap-[8px] rounded-md border border-neutral-200 p-4">
-          <Checkbox label="전체동의" id="all" checked={isAllChecked} onChange={toggleAll} />
+          <CheckBox label="전체동의" id="all" checked={isAllChecked} onChange={toggleAll} />
         </div>
 
         {/* 개별 동의 항목 */}
