@@ -1,15 +1,12 @@
 import { APIPathname } from '@/constants/pathname';
-import { dangolAPI } from '@/lib/axios';
+import DangolAPIClient from '@/lib/axios/DangolAPIClient';
 
-type LoginRequestBody = {
-  email: string;
-  password: string;
-};
+import type { LoginRequestBody, LoginResponseBody } from './types';
 
 export async function login(body: LoginRequestBody) {
-  return await dangolAPI.post(APIPathname.login, body);
+  return await DangolAPIClient.post<LoginResponseBody>(APIPathname.login, body);
 }
 
 export async function logout() {
-  return await dangolAPI.post(APIPathname.logout);
+  return await DangolAPIClient.post<true>(APIPathname.logout);
 }
