@@ -3,6 +3,15 @@ export const dangolPathname = {
   login: '/login',
   signUp: '/userjoin',
   findAccount: '/find-account',
+  dashboard: '/dashboard',
+  orders: '/orders',
+  ordersCancellations: '/orders/cancellations',
+  sales: '/sales',
+  transactions: '/sales/transactions',
+  stores: '/stores',
+  menus: '/stores/menus',
+  customers: '/customers',
+  events: '/events',
 } as const;
 
 export const APIPathname = {
