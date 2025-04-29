@@ -36,7 +36,7 @@ const ManagedStoreList = () => {
             </button>
           </Dropdown.Trigger>
         </div>
-        <Dropdown.List className="typo-body3-regular border-1 absolute z-[100] max-h-[240px] w-full overflow-auto rounded-lg border-neutral-200 bg-white [&::-webkit-scrollbar]:hidden">
+        <Dropdown.List className="typo-body3-regular border-1 absolute z-[100] max-h-[240px] w-full overflow-auto rounded-lg border-neutral-200 bg-white shadow-[0px_4px_8px_0px_#00000014] [&::-webkit-scrollbar]:hidden">
           {storeList.map((store, index) => (
             <Dropdown.Item
               key={store}
