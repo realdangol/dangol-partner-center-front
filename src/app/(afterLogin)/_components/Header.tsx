@@ -22,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 h-[64px] border-b border-b-neutral-300 bg-white px-10 py-4">
+    <header className="sticky top-0 z-[1000] h-[64px] border-b border-b-neutral-300 bg-white px-10 py-4">
       <div className="flex h-full items-center justify-between">
         <h1 className="typo-h1 text-black">{titleMap[pathname as keyof typeof titleMap]}</h1>
         <div className="flex gap-4 text-neutral-800">
