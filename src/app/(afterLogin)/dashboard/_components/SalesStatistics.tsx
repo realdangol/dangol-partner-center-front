@@ -67,18 +67,21 @@ const SalesStatistics = () => {
         <SubTitle>매출통계</SubTitle>
         <div className="flex">
           <Button
+            className="w-[84px] rounded-none rounded-bl rounded-tl"
             variant={period === 'daily' ? 'fillPrimary' : 'outlineNeutral'}
             onClick={handlePeriodClick('daily')}
           >
             일일
           </Button>
           <Button
+            className="w-[84px] rounded-none"
             variant={period === 'weekly' ? 'fillPrimary' : 'outlineNeutral'}
             onClick={handlePeriodClick('weekly')}
           >
             주간
           </Button>
           <Button
+            className="w-[84px] rounded-none rounded-br rounded-tr"
             variant={period === 'monthly' ? 'fillPrimary' : 'outlineNeutral'}
             onClick={handlePeriodClick('monthly')}
           >
