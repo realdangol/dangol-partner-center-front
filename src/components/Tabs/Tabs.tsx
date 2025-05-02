@@ -19,11 +19,11 @@ const Tabs = ({ variant = 'depth1', items, activeTab, fullWidth = false, onTabCl
   const depth1TabsClass = 'typo-body1-medium gap-3';
   const depth2TabsClass = 'typo-body2-medium gap-2';
   const depth1TabClass = 'h-[56px]';
-  const depth2TabClass = 'h-[42px] border border-neutral-300 rounded-[20px]';
+  const depth2TabClass = 'h-[42px] border border-neutral-300 rounded-[20px] bg-white';
   const activeTabClass =
     variant === 'depth1'
       ? 'border-b-2 border-b-brand-700 text-brand-700'
-      : 'border-none bg-brand-700 text-white';
+      : 'border-none !bg-brand-700 text-white';
 
   const handleTabClick = (value: string) => () => {
     onTabClick(value);

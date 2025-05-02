@@ -38,11 +38,12 @@ const DialogRenderer = () => {
 
   return (
     <div id="dangol-dialog">
-      {dialogs.map(({ Component, key, withCloseButton }) => {
+      {dialogs.map(({ Component, key, withCloseButton, ...options }) => {
         const defaultProps = {
           onClose: () => {
             closeDialog(key);
           },
+          ...options,
         };
 
         return (
