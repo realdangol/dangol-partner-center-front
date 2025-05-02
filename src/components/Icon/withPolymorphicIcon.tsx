@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react';
 
 type IconProps<Props = {}> = {
-  size?: '24' | '20' | '16';
+  size?: '56' | '24' | '20' | '16';
   color?: string;
 } & Props;
 
