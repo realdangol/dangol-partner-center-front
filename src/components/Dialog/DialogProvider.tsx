@@ -49,7 +49,7 @@ export const DialogProvider = ({ children }: PropsWithChildren) => {
           {
             Component: dialog,
             key: id,
-            withCloseButton: option.withCloseButton,
+            ...option,
           },
         ]);
       },

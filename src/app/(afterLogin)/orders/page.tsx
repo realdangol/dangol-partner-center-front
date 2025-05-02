@@ -1,7 +1,5 @@
-import React from 'react';
-
 const OrdersPage = () => {
-  return <div>OrdersPage</div>;
+  return null;
 };
 
 export default OrdersPage;

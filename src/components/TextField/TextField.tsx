@@ -44,17 +44,23 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
     };
 
     return (
-      <div className="flex flex-col gap-1">
-        <label htmlFor={inputProps?.id ?? defaultId} className="typo-body1-medium text-neutral-500">
-          {label}
-        </label>
+      <div className={clsx('flex flex-col gap-1')}>
+        {label && (
+          <label
+            htmlFor={inputProps?.id ?? defaultId}
+            className="typo-body1-medium text-neutral-500"
+          >
+            {label}
+          </label>
+        )}
         <div
           className={clsx(
-            'typo-body1-regular flex items-center gap-2 rounded border py-3 pl-3 text-neutral-800',
+            'typo-body1-regular flex items-center gap-2 rounded border bg-white py-3 pl-3 text-neutral-800',
             multiLine ? 'h-[140px]' : 'h-14 pr-3',
             error ? 'border-error-600' : 'border-neutral-300',
             inputProps.disabled && 'cursor-not-allowed border-neutral-300 bg-neutral-100',
             'focus-within:border-brand-700',
+            inputProps.className,
           )}
         >
           {multiLine ? (
@@ -74,7 +80,7 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
                 {...(inputProps as ComponentPropsWithoutRef<'input'>)}
                 id={inputProps?.id ?? defaultId}
                 className={clsx(
-                  'flex-1 appearance-none placeholder-neutral-800 outline-none',
+                  'w-full flex-1 appearance-none placeholder-neutral-800 outline-none',
                   'disabled:cursor-not-allowed disabled:placeholder-neutral-500',
                 )}
                 onChange={handleChange}
