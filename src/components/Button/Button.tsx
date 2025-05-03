@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 import React from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   variant?: 'fillPrimary' | 'fillNeutral' | 'outlinePrimary' | 'outlineNeutral';
@@ -58,13 +59,15 @@ const Button = ({
   return (
     <button
       {...restProps}
-      className={clsx(
-        base,
-        variantClass,
-        sizeClass,
-        !!leftIcon && leftIconClass,
-        !!rightIcon && rightIconClass,
-        restProps.className,
+      className={twMerge(
+        clsx(
+          base,
+          variantClass,
+          sizeClass,
+          !!leftIcon && leftIconClass,
+          !!rightIcon && rightIconClass,
+          restProps.className,
+        ),
       )}
     >
       <span className={clsx(interactionBase, activeVariantBase)} role="presentation" />
