@@ -55,9 +55,13 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
           </label>
         )}
         <div
-          className={clsx(
-            'typo-body1-regular flex items-center gap-2 bg-white text-neutral-800',
-            multiLine ? 'h-[140px]' : 'h-14',
+          className={twMerge(
+            clsx(
+              'typo-body1-regular flex items-center gap-2 rounded border bg-white pr-3 text-neutral-800',
+              inputProps.disabled && 'bg-neutral-100',
+              error ? 'border-error-600' : 'cursor-not-allowed border-neutral-300',
+              'focus-within:border-brand-700',
+            ),
           )}
         >
           {multiLine ? (
@@ -65,10 +69,8 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
               ref={ref as Ref<HTMLTextAreaElement>}
               className={twMerge(
                 clsx(
-                  'h-full w-full resize-none rounded border px-3 py-3 placeholder-neutral-800 outline-none scrollbar scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutral-300',
-                  'disabled:cursor-not-allowed disabled:bg-neutral-100 disabled:placeholder-neutral-500',
-                  'focus:border-brand-700',
-                  error ? 'border-error-600' : 'border-neutral-300',
+                  'h-[140px] w-full resize-none px-3 py-3 placeholder-neutral-800 outline-none scrollbar scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutral-300',
+                  'disabled:cursor-not-allowed disabled:placeholder-neutral-500',
                   inputProps.className,
                 ),
               )}
@@ -84,10 +86,8 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
                 id={inputProps?.id ?? defaultId}
                 className={twMerge(
                   clsx(
-                    'h-full w-full flex-1 appearance-none rounded border px-3 py-3 placeholder-neutral-800 outline-none',
-                    'disabled:cursor-not-allowed disabled:bg-neutral-100 disabled:placeholder-neutral-500',
-                    'focus:border-brand-700',
-                    error ? 'border-error-600' : 'border-neutral-300',
+                    'h-14 w-full flex-1 appearance-none rounded py-3 pl-3 placeholder-neutral-800 outline-none',
+                    'disabled:cursor-not-allowed disabled:placeholder-neutral-500',
                     inputProps.className,
                   ),
                 )}
