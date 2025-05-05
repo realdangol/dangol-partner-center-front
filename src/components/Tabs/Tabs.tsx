@@ -12,7 +12,7 @@ type Props = {
   variant?: 'depth1' | 'depth2';
   activeTab?: string;
   fullWidth?: boolean;
-  onTabClick: (value: string) => void;
+  onTabClick?: (value: string) => void;
 };
 
 const Tabs = ({ variant = 'depth1', items, activeTab, fullWidth = false, onTabClick }: Props) => {
@@ -26,7 +26,7 @@ const Tabs = ({ variant = 'depth1', items, activeTab, fullWidth = false, onTabCl
       : 'border-none !bg-brand-700 text-white';
 
   const handleTabClick = (value: string) => () => {
-    onTabClick(value);
+    onTabClick?.(value);
   };
 
   return (

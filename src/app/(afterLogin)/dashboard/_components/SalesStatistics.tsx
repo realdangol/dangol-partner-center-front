@@ -3,12 +3,10 @@
 import React, { useState } from 'react';
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
 
-import { Button } from '@/components';
-import Dropdown from '@/components/Dropdown/Dropdown';
+import { Button, Select } from '@/components';
 import colors from '@/constants/colors';
 
 import { SubTitle } from '../../_components';
-import { SalesStatisticsMetricDropdownTrigger } from '.';
 import type { SalesStatisticsMetricLabel, SalesStatisticsMetricValue } from './types';
 
 type SalesStatisticsPeriod = 'daily' | 'weekly' | 'monthly';
@@ -57,8 +55,8 @@ const SalesStatistics = () => {
     setPeriod(period);
   };
 
-  const handleSelectMetric = (metric: SalesStatisticsMetricValue) => () => {
-    setMetric(metric);
+  const handleSelectMetric = (value: string) => {
+    setMetric(value as SalesStatisticsMetricValue);
   };
 
   return (
@@ -92,20 +90,7 @@ const SalesStatistics = () => {
       <div className="rounded-[32px] border border-neutral-200 bg-white py-[30px]">
         <div className="flex items-center justify-between px-8">
           <SubTitle>총 3,155,822원</SubTitle>
-          <Dropdown closeOnBlur>
-            <SalesStatisticsMetricDropdownTrigger metric={metric} />
-            <Dropdown.List className="typo-body1-regular absolute left-[-30px] z-[100] w-[180px] bg-white text-center shadow-[0px_4px_8px_0px_#00000014]">
-              {metricList.map((metric) => (
-                <Dropdown.Item
-                  key={metric.value}
-                  className="cursor-pointer p-2.5"
-                  onClick={handleSelectMetric(metric.value)}
-                >
-                  {metric.label}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.List>
-          </Dropdown>
+          <Select options={metricList} selectedOption={metric} onSelect={handleSelectMetric} />
         </div>
         <ResponsiveContainer width="100%" height={270}>
           <BarChart data={hourlyData}>
