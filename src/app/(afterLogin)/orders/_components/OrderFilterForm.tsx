@@ -24,8 +24,6 @@ const initialFormValues = {
 };
 
 const OrderFilterForm = () => {
-  console.log('werw');
-
   const startDateCalendarRef = useRef<HTMLDivElement>(null);
   const endDateCalendarRef = useRef<HTMLDivElement>(null);
   const orderNumberInputRef = useRef<HTMLInputElement>(null);
@@ -155,10 +153,13 @@ const OrderFilterForm = () => {
                     <div
                       ref={startDateCalendarRef}
                       className="relative"
-                      onClick={() => setCalendarOpen({ ...calendarOpen, startDate: true })}
+                      onClick={() => {
+                        setCalendarOpen({ ...calendarOpen, startDate: true });
+                      }}
                     >
                       <TextField
                         className="h-[48px] w-[160px]"
+                        containerClassName={calendarOpen.startDate ? 'border-brand-700' : ''}
                         placeholder="YYYY-MM-DD"
                         rightIcon={<CalendarIcon color={colors.neutral300} />}
                         value={formValues.startDate}
@@ -181,6 +182,7 @@ const OrderFilterForm = () => {
                     >
                       <TextField
                         className="h-[48px] w-[160px]"
+                        containerClassName={calendarOpen.endDate ? 'border-brand-700' : ''}
                         placeholder="YYYY-MM-DD"
                         rightIcon={<CalendarIcon color={colors.neutral300} />}
                         value={formValues.endDate}

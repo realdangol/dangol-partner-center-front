@@ -58,7 +58,7 @@ const Select = ({ options, placeholder, selectedOption, width, onSelect }: Props
           width={width}
         />
       </Dropdown.Trigger>
-      <Dropdown.List className="typo-body1-regular absolute left-0 z-[100] w-full bg-white text-center shadow-[0px_4px_8px_0px_#00000014]">
+      <Dropdown.List className="typo-body1-regular absolute left-0 z-[100] max-h-[200px] w-full overflow-y-auto bg-white text-center shadow-[0px_4px_8px_0px_#00000014]">
         {options.map((option) => (
           <Dropdown.Item
             key={option.value}

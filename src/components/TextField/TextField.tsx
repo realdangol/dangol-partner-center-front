@@ -15,6 +15,7 @@ type BaseProps = {
     color?: Color;
   };
   rightIcon?: ReactNode;
+  containerClassName?: string;
 };
 
 type NonMultiLineProps = {
@@ -30,7 +31,18 @@ type MultiLineProps = {
 type Props = NonMultiLineProps | MultiLineProps;
 
 const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
-  ({ label, error = false, helperText, rightIcon, multiLine = false, ...inputProps }, ref) => {
+  (
+    {
+      label,
+      error = false,
+      helperText,
+      rightIcon,
+      multiLine = false,
+      containerClassName,
+      ...inputProps
+    },
+    ref,
+  ) => {
     const defaultId = useId();
     const [textLength, setTextLength] = useState(
       inputProps.defaultValue ? String(inputProps.defaultValue).length : 0,
@@ -58,9 +70,10 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
           className={twMerge(
             clsx(
               'typo-body1-regular flex items-center gap-2 rounded border bg-white pr-3 text-neutral-800',
-              inputProps.disabled && 'bg-neutral-100',
-              error ? 'border-error-600' : 'cursor-not-allowed border-neutral-300',
-              'focus-within:border-brand-700',
+              error ? 'border-error-600' : 'border-neutral-300',
+              inputProps.disabled && 'cursor-not-allowed bg-neutral-100',
+              !inputProps.readOnly && 'focus-within:border-brand-700',
+              containerClassName,
             ),
           )}
         >
