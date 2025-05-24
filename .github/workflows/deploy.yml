@@ -31,6 +31,7 @@ jobs:
         run: |
           ssh -i ec2_key.pem -o StrictHostKeyChecking=no ${{ secrets.DEV_EC2_USER }}@${{ secrets.DEV_EC2_HOST }} << 'EOF'
           cd /home/${{ secrets.DEV_EC2_USER }}/app
+          npm install -g pnpm pm2
           pnpm install
           pnpm build
           pm2 start pnpm --name nextjs-app -- start || pm2 restart nextjs-app
