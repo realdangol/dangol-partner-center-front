@@ -2,60 +2,32 @@ name: Deploy to EC2
 
 on:
   push:
-    branches: feature/deploy
+    branches:
+      - feature/deploy
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Configure .npmrc
+      - name: Prepare SSH Key
         run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.ACCESS_TOKEN }}" > ~/.npmrc
-          echo "@dangol-dev:registry=https://npm.pkg.github.com/" >> ~/.npmrc
+          echo "${{ secrets.EC2_SSH_KEY }}" > ec2.pem
+          chmod 600 ec2.pem
 
-      - name: Setup Node.js & pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'pnpm'
-
-      - name: Install dependencies & build with pnpm
+      - name: Copy project to EC2
         run: |
+          rsync -avz -e "ssh -i ec2.pem -o StrictHostKeyChecking=no" \
+            --exclude node_modules --exclude .next/cache --delete \
+            ./ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/${{ secrets.EC2_USER }}/app
+
+      - name: Build & Start on EC2
+        run: |
+          ssh -i ec2.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          cd /home/${{ secrets.EC2_USER }}/app
           pnpm install
           pnpm build
-
-      - name: Create deployment package (zip)
-        run: |
-          zip -r app.zip . -x "node_modules/*" ".git/*"
-
-      - name: Upload to EC2
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ secrets.DEV_EC2_HOST }}
-          username: ${{ secrets.DEV_EC2_USER }}
-          key: ${{ secrets.DEV_EC2_KEY }}
-          source: 'app.zip'
-          target: '/home/ubuntu/'
-
-      - name: Remote SSH to deploy on EC2
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.DEV_EC2_HOST }}
-          username: ${{ secrets.DEV_EC2_USER }}
-          key: ${{ secrets.DEV_EC2_KEY }}
-          script: |
-            cd /home/ubuntu
-            rm -rf app-backup
-            mv app app-backup || true
-            unzip -o app.zip -d app
-            cd app
-            pnpm install --prod
-            pm2 restart next-app || pm2 start pnpm --name "next-app" -- start
+          pm2 start pnpm --name nextjs-app -- start || pm2 restart nextjs-app
