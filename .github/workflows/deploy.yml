@@ -15,8 +15,8 @@ jobs:
 
       - name: Prepare SSH Key
         run: |
-          echo "${{ secrets.EC2_SSH_KEY }}" > ec2.pem
-          chmod 600 ec2.pem
+          echo "${{ secrets.DEV_EC2_KEY }}" > ec2_key.pem
+          chmod 600 ec2_key.pem
 
       - name: Copy project to EC2
         run: |
@@ -25,12 +25,12 @@ jobs:
             --exclude .next/cache \
             --exclude .git \
             --delete \
-            ./ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/${{ secrets.EC2_USER }}/app
+            ./ ${{ secrets.DEV_EC2_USER }}@${{ secrets.DEV_EC2_HOST }}:/home/${{ secrets.DEV_EC2_USER }}/app
 
       - name: Build & Start on EC2
         run: |
-          ssh -i ec2.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-          cd /home/${{ secrets.EC2_USER }}/app
+          ssh -i ec2.pem -o StrictHostKeyChecking=no ${{ secrets.DEV_EC2_USER }}@${{ secrets.DEV_EC2_HOST }} << 'EOF'
+          cd /home/${{ secrets.DEV_EC2_USER }}/app
           pnpm install
           pnpm build
           pm2 start pnpm --name nextjs-app -- start || pm2 restart nextjs-app
