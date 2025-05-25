@@ -12,6 +12,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Configure .npmrc
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.ACCESS_TOKEN }}" > ~/.npmrc
+          echo "@dangol-dev:registry=https://npm.pkg.github.com/" >> ~/.npmrc
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
