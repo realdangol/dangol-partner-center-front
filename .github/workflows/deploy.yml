@@ -1,37 +1,44 @@
-name: Deploy to EC2
+name: Deploy to EC2 via ECR
 
 on:
   push:
-    branches:
-      - feature/deploy
+    branches: [feature/deploy]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Prepare SSH Key
-        run: |
-          echo "${{ secrets.DEV_EC2_KEY }}" > dangol-front-dev-key.pem
-          chmod 600 dangol-front-dev-key.pem
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Copy project to EC2
+      - name: Login to ECR
         run: |
-          rsync -avz -e "ssh -i dangol-front-dev-key.pem -o StrictHostKeyChecking=no" \
-            --exclude node_modules \
-            --exclude .next/cache \
-            --exclude .git \
-            --delete \
-            ./ ${{ secrets.DEV_EC2_USER }}@${{ secrets.DEV_EC2_HOST }}:/home/${{ secrets.DEV_EC2_USER }}/app
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} |
+          docker login --username AWS --password-stdin ${{ secrets.DEV_ECR_REPOSITORY }}
 
-      - name: Build & Start on EC2
+      - name: Build Docker image
         run: |
-          ssh -i dangol-front-dev-key.pem -o StrictHostKeyChecking=no ${{ secrets.DEV_EC2_USER }}@${{ secrets.DEV_EC2_HOST }} << 'EOF'
-          cd /home/${{ secrets.DEV_EC2_USER }}/app
-          sudo npm install -g pnpm pm2
-          pnpm install
-          pnpm build
-          pm2 start pnpm --name nextjs-app -- start || pm2 restart nextjs-app
+          docker build -t next-app .
+          docker tag next-app:latest ${{ secrets.DEV_ECR_REPOSITORY }}:latest
+
+      - name: Push Docker image to ECR
+        run: docker push ${{ secrets.DEV_ECR_REPOSITORY }}:latest
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEV_EC2_HOST }}
+          username: ${{ secrets.DEV_EC2_USER }}
+          key: ${{ secrets.DEV_EC2_KEY }}
+          script: |
+            docker pull ${{ secrets.DEV_ECR_REPOSITORY }}:latest
+            docker stop next-app || true && docker rm next-app || true
+            docker run -d --name next-app -p 3000:3000 ${{ secrets.DEV_ECR_REPOSITORY }}:latest
