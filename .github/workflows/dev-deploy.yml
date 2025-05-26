@@ -1,0 +1,45 @@
+name: Build and Deploy Dev Docker Image to EC2
+
+on:
+  push:
+    branches:
+      - feature/deploy
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t dangol-partner-center-dev-app:latest .
+
+      - name: Save Docker image to tar file
+        run: |
+          docker save -o dangol-partner-center-dev-app.tar dangol-partner-center-dev-app:latest
+          chmod 664 dangol-partner-center-dev-app.tar
+
+      - name: Copy image to EC2 via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.DEV_EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.DEV_EC2_SSH_KEY }}
+          source: './dangol-partner-center-dev-app.tar'
+          target: '/home/ubuntu/output'
+
+      - name: SSH into EC2 and deploy container
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.DEV_EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.DEV_EC2_SSH_KEY }}
+          script: |
+            sudo docker stop my-next-app
+            sudo docker rm my-next-app
+            sudo docker image rm my-next-app
+            sudo docker load -i ~/output/dangol-partner-center-dev-app.tar
+            sudo docker run -d --name dangol-partner-center-dev-app -p 3000:3000 dangol-partner-center-dev-app
