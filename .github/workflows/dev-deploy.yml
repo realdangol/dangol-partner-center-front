@@ -3,7 +3,7 @@ name: Build and Deploy Dev Docker Image to EC2
 on:
   push:
     branches:
-      - feature/deploy
+      - dev
 
 jobs:
   build-deploy:
