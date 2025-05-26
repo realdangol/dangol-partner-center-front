@@ -15,8 +15,8 @@ jobs:
 
       - name: Configure .npmrc
         run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.ACCESS_TOKEN }}" > ~/.npmrc
-          echo "@dangol-dev:registry=https://npm.pkg.github.com/" >> ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.ACCESS_TOKEN }}" > .npmrc
+          echo "@dangol-dev:registry=https://npm.pkg.github.com/" >> .npmrc
 
       - name: Build Docker image
         run: |
