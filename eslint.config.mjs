@@ -18,6 +18,26 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript', 'plugin:@dangol-dev/recommended'),
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+  },
+  {
+    files: ['**/*.stories.*'],
+    rules: {
+      'no-unused-vars': 'off',
+      'react-hooks/rules-of-hooks': 'off',
+    },
+  },
+  {
+    rules: {
+      '@typescript-eslint/no-empty-object-type': 'off',
+      'react/display-name': 'off',
+      '@next/next/no-img-element': 'warn',
+    },
+  },
+  {
+    ignores: ['*.config.js'],
+  },
 ];
 
 export default eslintConfig;
