@@ -43,8 +43,8 @@ jobs:
           username: ubuntu
           key: ${{ secrets.DEV_EC2_SSH_KEY }}
           script: |
-            sudo docker stop my-next-app
-            sudo docker rm my-next-app
-            sudo docker image rm my-next-app
+            sudo docker stop dangol-partner-center-dev-app
+            sudo docker rm dangol-partner-center-dev-app
+            sudo docker image rm dangol-partner-center-dev-app
             sudo docker load -i ~/output/dangol-partner-center-dev-app.tar
             sudo docker run -d --name dangol-partner-center-dev-app -p 3000:3000 dangol-partner-center-dev-app
