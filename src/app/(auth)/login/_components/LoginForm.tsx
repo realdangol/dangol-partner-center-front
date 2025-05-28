@@ -1,117 +1,90 @@
 'use client';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import type { ChangeEventHandler, FormEventHandler } from 'react';
-import React, { useRef, useState } from 'react';
+import type { ChangeEventHandler } from 'react';
+import React, { useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 import { CheckBox, TextField } from '@/components';
 import useDialog from '@/components/Dialog/useDialog';
-import { UnknownErrorModal } from '@/components/Modal';
 import { errorCode } from '@/constants/error';
 import { dangolPathname } from '@/constants/pathname';
 import { emailRegex, passwordRegex } from '@/constants/regex';
 import { useLogin } from '@/services/auth/useAuthQuery';
 
 import { AuthSubmitButton } from '../../_components';
+import LoginFailModal from './LoginFailModal';
 
-const initialErrorMessage = {
-  email: {
-    value: false,
-    message: '',
-  },
-  password: {
-    value: false,
-    message: '',
-  },
+type LoginFormValues = {
+  email: string;
+  password: string;
 };
+
+const loginSchema = yup.object().shape({
+  email: yup
+    .string()
+    .required('이메일을 입력해주세요.')
+    .matches(emailRegex, '올바른 이메일을 입력해주세요.'),
+  password: yup
+    .string()
+    .required('비밀번호를 입력해주세요.')
+    .matches(passwordRegex, '영문 대소문자와 숫자를 포함한 8~16자여야 합니다.'),
+});
 
 const LoginForm = () => {
   const { openDialog } = useDialog();
   const router = useRouter();
   const { mutateAsync: login, isPending } = useLogin();
-  const emailInputRef = useRef<HTMLInputElement>(null);
-  const passwordInputRef = useRef<HTMLInputElement>(null);
   const [keepLogin, setKeepLogin] = useState(false);
-  const [error, setError] = useState(initialErrorMessage);
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
-
-  const clearErrors = () => {
-    setError(initialErrorMessage);
-  };
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    getValues,
+    setError,
+    clearErrors,
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    resolver: yupResolver(loginSchema),
+  });
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = () => {
-    if (!emailInputRef.current || !passwordInputRef.current) return;
-
     clearErrors();
-    setSubmitButtonDisabled(!emailInputRef.current.value && !passwordInputRef.current.value);
+    setSubmitButtonDisabled(!getValues('email') || !getValues('password'));
   };
 
-  const checkValidation = (email: string, password: string) => {
-    if (!emailRegex.test(email)) {
-      setError({
-        ...error,
-        email: {
-          value: true,
-          message: '이메일 주소를 다시 확인해 주세요.',
-        },
-      });
-      throw Error('Validation error');
-    }
-
-    if (!passwordRegex.test(password)) {
-      setError({
-        ...error,
-        password: {
-          value: true,
-          message: '비밀번호를 다시 확인해 주세요.',
-        },
-      });
-      throw Error('Validation error');
-    }
-  };
-
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
-    event.preventDefault();
-
-    if (!emailInputRef.current || !passwordInputRef.current) return;
-
+  const onValid: SubmitHandler<LoginFormValues> = async ({ email, password }) => {
     try {
-      checkValidation(emailInputRef.current.value, passwordInputRef.current.value);
       await login({
-        email: emailInputRef.current.value,
-        password: passwordInputRef.current.value,
+        email,
+        password,
       });
-      // 로그인 성공 후 처리 필요..
-      router.replace(dangolPathname.home);
+      // 로그인 후 처리 작업 추가 필요
+      router.replace(dangolPathname.dashboard);
     } catch (e) {
       if (axios.isAxiosError(e)) {
         switch (e.status) {
           case errorCode.Login.UserNotFound:
-            setError({
-              ...error,
-              email: {
-                value: true,
-                message: '가입되지 않은 계정입니다.',
-              },
+            setError('email', {
+              message: '가입되지 않은 계정입니다.',
             });
             break;
           case errorCode.Login.PasswordMismatch:
-            setError({
-              ...error,
-              email: {
-                value: true,
-                message: `비밀번호가 일치하지 않습니다. 5회 이상 틀린 경우 계정이 제한됩니다. (현재 ${e.response?.data.count}회 불일치)`,
-              },
-            });
+            openDialog(<LoginFailModal failType="NotFound" />);
             break;
           case errorCode.Login.AccountRestriction:
-            // 제한된 계정 안내 메세지...
+            openDialog(<LoginFailModal failType="AccountRestriction" />);
             break;
           default:
-            openDialog(<UnknownErrorModal />, {
-              withCloseButton: false,
-            });
+            openDialog(<LoginFailModal failType="Unknown" />);
             break;
         }
       }
@@ -119,30 +92,32 @@ const LoginForm = () => {
   };
 
   return (
-    <form className="flex flex-col gap-12" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-12" onSubmit={handleSubmit(onValid)}>
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-4">
           <TextField
-            ref={emailInputRef}
+            {...register('email', {
+              onChange: handleChange,
+            })}
             type="email"
             label="이메일"
             placeholder="이메일 입력해주세요."
             helperText={{
-              value: error.email.message,
+              value: errors.email?.message as string,
             }}
-            error={error.email.value}
-            onChange={handleChange}
+            error={!!errors?.email}
           />
           <TextField
-            ref={passwordInputRef}
+            {...register('password', {
+              onChange: handleChange,
+            })}
             type="password"
             label="비밀번호"
             placeholder="비밀번호를 입력해주세요."
             helperText={{
-              value: error.password.message,
+              value: errors.password?.message as string,
             }}
-            error={error.password.value}
-            onChange={handleChange}
+            error={!!errors.password}
           />
         </div>
         <CheckBox
