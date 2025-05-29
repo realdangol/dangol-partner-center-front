@@ -12,24 +12,24 @@ const checkTokenValidity = async (refreshToken: string) => {
     body: JSON.stringify({ refreshToken }),
   });
 
-  if (response.ok) {
-    redirect(dangolPathname.dashboard);
+  if (!response.ok) {
+    redirect(dangolPathname.login);
   }
 };
 
-const withGuest = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
-  const WithGuestComponent = async (props: P) => {
+const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
+  const withAuthComponent = async (props: P) => {
     const cookie = await cookies();
     const refreshToken = cookie.get('refreshToken');
 
-    if (refreshToken) {
-      await checkTokenValidity(refreshToken.value);
-    }
+    if (!refreshToken) redirect(dangolPathname.login);
 
-    return <WrappedComponent {...props} />;
+    await checkTokenValidity(refreshToken.value);
+
+    return <WrappedComponent {...props} accessToken="wewew" />;
   };
 
-  return WithGuestComponent;
+  return withAuthComponent;
 };
 
-export default withGuest;
+export default withAuth;

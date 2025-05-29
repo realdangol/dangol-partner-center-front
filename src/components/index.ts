@@ -1,3 +1,4 @@
+export { default as AuthProvider } from './AuthProvider';
 export { default as Button } from './Button/Button';
 export { default as CheckBox } from './CheckBox/CheckBox';
 export { default as Dialog } from './Dialog/DialogRenderer';
