@@ -70,7 +70,10 @@ const Button = ({
         ),
       )}
     >
-      <span className={clsx(interactionBase, activeVariantBase)} role="presentation" />
+      <span
+        className={clsx(interactionBase, !restProps.disabled && activeVariantBase)}
+        role="presentation"
+      />
       {leftIcon}
       {children}
       {rightIcon}
