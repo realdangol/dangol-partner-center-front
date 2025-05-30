@@ -21,7 +21,7 @@ const SignUpContext = createContext<SignUpState | null>(null);
 export default SignUpContext;
 
 export const SignUpProvider = ({ children }: PropsWithChildren) => {
-  const [step, setStep] = useState<SignUpStep>(1);
+  const [step, setStep] = useState<SignUpStep>(2);
   const [signUpFormValues, setSignUpFormValues] = useState<SignUpFormValues>({
     termsAgreed: false,
     privacyAgreed: false,

@@ -51,6 +51,9 @@ const FileUpload = ({
   };
 
   const clearFile = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
     setFileName('');
     onClear?.();
   };

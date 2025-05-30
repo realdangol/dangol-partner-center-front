@@ -5,6 +5,7 @@ export { default as Dialog } from './Dialog/DialogRenderer';
 export { default as Divider } from './Divider/Divider';
 export { default as useDropdown } from './Dropdown/useDropdown';
 export { default as Fab } from './Fab/Fab';
+export { default as FileUpload } from './FileUpload';
 export { default as Select } from './Select/Select';
 export { default as Tabs } from './Tabs/Tabs';
 export { default as TextField } from './TextField/TextField';

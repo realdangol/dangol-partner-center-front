@@ -1,7 +1,6 @@
-import { Button, TextField } from '@/components';
+import { Button, FileUpload, TextField } from '@/components';
 
 import { SubTitle } from '../../_components';
-import FileUpload from './FileUpload';
 
 const BusinessInfoForm = () => {
   const handleFileSelect = (file: File) => {
