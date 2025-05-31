@@ -12,16 +12,17 @@ type SignUpFormValues = {
 };
 type SignUpState = {
   step: SignUpStep;
+  signUpFormValues: SignUpFormValues;
   setStep: React.Dispatch<React.SetStateAction<SignUpStep>>;
   setSignUpFormValues: React.Dispatch<React.SetStateAction<SignUpFormValues>>;
-} & SignUpFormValues;
+};
 
 const SignUpContext = createContext<SignUpState | null>(null);
 
 export default SignUpContext;
 
 export const SignUpProvider = ({ children }: PropsWithChildren) => {
-  const [step, setStep] = useState<SignUpStep>(2);
+  const [step, setStep] = useState<SignUpStep>(1);
   const [signUpFormValues, setSignUpFormValues] = useState<SignUpFormValues>({
     termsAgreed: false,
     privacyAgreed: false,
@@ -30,7 +31,7 @@ export const SignUpProvider = ({ children }: PropsWithChildren) => {
   });
 
   return (
-    <SignUpContext.Provider value={{ step, ...signUpFormValues, setStep, setSignUpFormValues }}>
+    <SignUpContext.Provider value={{ step, signUpFormValues, setStep, setSignUpFormValues }}>
       {children}
     </SignUpContext.Provider>
   );

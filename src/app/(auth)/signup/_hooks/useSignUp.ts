@@ -9,7 +9,7 @@ const useSignUp = () => {
 
   if (!signUpContext) throw Error('SignUpProvider 안에서 사용해주세요.');
 
-  const { step, setStep, setSignUpFormValues } = signUpContext;
+  const { step, signUpFormValues, setStep, setSignUpFormValues } = signUpContext;
 
   const goNextStep = () => {
     setStep(2);
@@ -21,6 +21,7 @@ const useSignUp = () => {
 
   return {
     step,
+    signUpFormValues,
     goNextStep,
     goPrevStep,
     setSignUpFormValues,

@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import type { ChangeEventHandler } from 'react';
 import React from 'react';
 import type { Address } from 'react-daum-postcode';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
@@ -9,9 +10,11 @@ import * as yup from 'yup';
 import { Button, FileUpload, TextField } from '@/components';
 import { CheckLine } from '@/components/Icon';
 import { emailRegex, passwordRegex, phoneRegex } from '@/constants/regex';
+import filterOnlyNumbers from '@/utils/filterOnlyNumbers';
 import preventSubmitByEnter from '@/utils/preventSubmitByEnter';
 
 import { AuthSubmitButton } from '../../_components';
+import { useSignUp } from '../_hooks';
 
 const schema = yup.object().shape({
   email: yup
@@ -54,6 +57,7 @@ type SignUpStep2FormValues = {
 };
 
 const SignUpStep2 = () => {
+  const { signUpFormValues } = useSignUp();
   const {
     control,
     formState: { errors },
@@ -112,8 +116,13 @@ const SignUpStep2 = () => {
     });
   };
 
+  const handleTelChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    event.target.value = filterOnlyNumbers(event.target.value);
+  };
+
   const onValid: SubmitHandler<SignUpStep2FormValues> = (data) => {
-    console.log(data);
+    console.log(signUpFormValues, data);
+    // 회원가입 처리 api
   };
 
   return (
@@ -178,7 +187,9 @@ const SignUpStep2 = () => {
           }}
         />
         <TextField
-          {...register('phone')}
+          {...register('phone', {
+            onChange: handleTelChange,
+          })}
           type="tel"
           label="휴대폰번호"
           placeholder="휴대폰번호를 입력해주세요."
@@ -226,9 +237,11 @@ const SignUpStep2 = () => {
           }}
         />
         <TextField
-          {...register('businessRegistrationNumber')}
+          {...register('businessRegistrationNumber', {
+            onChange: handleTelChange,
+          })}
           type="tel"
-          label="상호 명"
+          label="사업자번호"
           placeholder="사업자등록 상 사업자번호를 입력해주세요."
           error={!!errors.businessRegistrationNumber}
           helperText={{
@@ -236,7 +249,9 @@ const SignUpStep2 = () => {
           }}
         />
         <TextField
-          {...register('storePhone')}
+          {...register('storePhone', {
+            onChange: handleTelChange,
+          })}
           type="tel"
           label="매장 전화번호"
           placeholder="매장 전화번호를 입력해주세요."
