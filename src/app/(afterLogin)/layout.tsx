@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
 import React from 'react';
 
-import { AuthProvider } from '@/components';
-
+// import { AuthProvider } from '@/components';
 import { Header, Sidebar } from './_components';
 
 type Props = {
@@ -10,9 +9,9 @@ type Props = {
   accessToken: string;
 };
 
-const AfterLoginLayout = ({ children, accessToken }: Props) => {
+const AfterLoginLayout = ({ children }: PropsWithChildren<Props>) => {
   return (
-    <AuthProvider accessToken={accessToken}>
+    <>
       <Sidebar />
       <div className="w-[calc(100vw - 240px)] ml-[240px]">
         <Header />
@@ -20,7 +19,7 @@ const AfterLoginLayout = ({ children, accessToken }: Props) => {
           <div className="px-10 py-[30px]">{children}</div>
         </main>
       </div>
-    </AuthProvider>
+    </>
   );
 };
 
