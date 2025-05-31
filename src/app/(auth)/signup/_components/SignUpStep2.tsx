@@ -11,7 +11,7 @@ import { Button, FileUpload, TextField } from '@/components';
 import { CheckLine } from '@/components/Icon';
 import { phoneRegex } from '@/constants/regex';
 import {
-  businessRegistrationSchema,
+  businessRegistrationNumberSchema,
   companyNameSchema,
   emailSchema,
   passwordSchema,
@@ -37,7 +37,7 @@ const schema = yup.object().shape({
   address: yup.string().required('주소를 입력해주세요.'),
   detailedAddress: yup.string().notRequired(),
   companyName: companyNameSchema,
-  businessRegistrationNumber: businessRegistrationSchema,
+  businessRegistrationNumber: businessRegistrationNumberSchema,
   storePhone: yup.string().required('매장 전화번호를 입력해주세요.'),
   businessRegistration: yup.string().required('사업자 등록증을 등록해주세요.'),
 });
@@ -76,6 +76,7 @@ const SignUpStep2 = () => {
       address: '',
       detailedAddress: '',
       companyName: '',
+      businessRegistrationNumber: '',
       storePhone: '',
       businessRegistration: '',
     },
