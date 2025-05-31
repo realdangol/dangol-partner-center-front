@@ -5,7 +5,6 @@ import { Header, Sidebar } from './_components';
 
 type Props = {
   children: ReactNode;
-  accessToken: string;
 };
 
 const AfterLoginLayout = ({ children }: Props) => {
