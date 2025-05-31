@@ -3,7 +3,6 @@ import React from 'react';
 
 import { AuthProvider } from '@/components';
 
-// import withAuth from '@/hoc/withAuth';
 import { Header, Sidebar } from './_components';
 
 type Props = {
@@ -24,5 +23,4 @@ const AfterLoginLayout = ({ children, accessToken }: PropsWithChildren<Props>) =
   );
 };
 
-// export default withAuth(AfterLoginLayout);
 export default AfterLoginLayout;
