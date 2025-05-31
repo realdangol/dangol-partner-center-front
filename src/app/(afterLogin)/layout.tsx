@@ -1,11 +1,10 @@
-import type { ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 import React from 'react';
 
 // import { AuthProvider } from '@/components';
 import { Header, Sidebar } from './_components';
 
 type Props = {
-  children?: ReactNode;
   accessToken: string;
 };
 
