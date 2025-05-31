@@ -16,7 +16,7 @@ type Props = {
 };
 
 const Tabs = ({ variant = 'depth1', items, activeTab, fullWidth = false, onTabClick }: Props) => {
-  const depth1TabsClass = 'typo-body1-medium gap-3';
+  const depth1TabsClass = `${fullWidth ? 'w-full' : 'w-fit'} typo-body1-medium gap-3 border-b border-neutral-300`;
   const depth2TabsClass = 'typo-body2-medium gap-2';
   const depth1TabClass = 'h-[56px]';
   const depth2TabClass = 'h-[42px] border border-neutral-300 rounded-[20px] bg-white';
@@ -32,7 +32,7 @@ const Tabs = ({ variant = 'depth1', items, activeTab, fullWidth = false, onTabCl
   return (
     <div
       className={clsx(
-        'flex w-full scroll-p-0 flex-nowrap overflow-auto px-4 text-neutral-800 [&::-webkit-scrollbar]:hidden',
+        'inline-flex w-full scroll-p-0 flex-nowrap overflow-auto px-4 text-neutral-800 [&::-webkit-scrollbar]:hidden',
         variant === 'depth1' ? depth1TabsClass : depth2TabsClass,
       )}
     >

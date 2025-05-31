@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { Button, CheckBox, Tabs, TextField } from '@/components';
+import { Button, CheckBox, FileUpload, Tabs, TextField } from '@/components';
 import preventSubmitByEnter from '@/utils/preventSubmitByEnter';
 
 import { SubTitle } from '../../_components';
-import FileUpload from './FileUpload';
 import TimeSelect from './TimeSelect';
 
 const StoreDescriptionForm = () => {

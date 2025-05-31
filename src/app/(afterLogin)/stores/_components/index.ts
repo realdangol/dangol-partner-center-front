@@ -1,5 +1,4 @@
 export { default as BusinessInformationForm } from './BusinessInfoForm';
-export { default as FileUpload } from './FileUpload';
 export { default as LoginInformationForm } from './LoginInfoForm';
 export { default as StoreBasicInfoForm } from './StoreBasicInfoForm';
 export { default as StoreDescriptionForm } from './StoreDescriptionForm';

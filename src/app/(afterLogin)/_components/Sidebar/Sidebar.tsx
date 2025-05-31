@@ -68,7 +68,7 @@ const sideNavigationBarList = [
 
 const Sidebar = () => {
   return (
-    <aside className="typo-body1-medium fixed left-0 top-0 flex h-[100dvh] w-[240px] flex-col justify-between overflow-auto bg-neutral-800 [&::-webkit-scrollbar]:hidden">
+    <aside className="typo-body1-medium fixed left-0 top-0 flex h-dvh w-[240px] flex-col justify-between overflow-auto bg-neutral-800 [&::-webkit-scrollbar]:hidden">
       <div>
         <ManagedStoreList />
         <nav>

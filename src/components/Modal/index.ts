@@ -1,1 +1,1 @@
-export { default as UnknownErrorModal } from './UnknownErrorModal';
+export { default as BaseModal } from './BaseModal';

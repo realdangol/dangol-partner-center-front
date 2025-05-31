@@ -16,6 +16,7 @@ type BaseProps = {
   };
   rightIcon?: ReactNode;
   containerClassName?: string;
+  withLength?: boolean;
 };
 
 type NonMultiLineProps = {
@@ -39,6 +40,7 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
       rightIcon,
       multiLine = false,
       containerClassName,
+      withLength = false,
       ...inputProps
     },
     ref,
@@ -82,7 +84,7 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
               ref={ref as Ref<HTMLTextAreaElement>}
               className={twMerge(
                 clsx(
-                  'h-[140px] w-full resize-none px-3 py-3 placeholder-neutral-800 outline-none scrollbar scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutral-300',
+                  'h-[140px] w-full resize-none px-3 py-3 placeholder-neutral-300 outline-none scrollbar scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutral-300',
                   'disabled:cursor-not-allowed disabled:placeholder-neutral-500',
                   inputProps.className,
                 ),
@@ -99,7 +101,7 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
                 id={inputProps?.id ?? defaultId}
                 className={twMerge(
                   clsx(
-                    'h-14 w-full flex-1 appearance-none rounded py-3 pl-3 placeholder-neutral-800 outline-none',
+                    'h-14 w-full flex-1 appearance-none rounded py-3 pl-3 placeholder-neutral-300 outline-none',
                     'disabled:cursor-not-allowed disabled:placeholder-neutral-500',
                     inputProps.className,
                   ),
@@ -110,7 +112,7 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
             </>
           )}
         </div>
-        {inputProps.maxLength && (
+        {withLength && (
           <p className={`${error ? 'text-error-600' : 'text-neutral-800'} typo-element3 self-end`}>
             {textLength}/{inputProps.maxLength}
           </p>

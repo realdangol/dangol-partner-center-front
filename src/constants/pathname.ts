@@ -1,7 +1,7 @@
 export const dangolPathname = {
   home: '/',
   login: '/login',
-  signUp: '/userjoin',
+  signUp: '/signup',
   findAccount: '/find-account',
   dashboard: '/dashboard',
   orders: '/orders',
