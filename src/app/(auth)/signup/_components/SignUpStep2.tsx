@@ -9,7 +9,13 @@ import * as yup from 'yup';
 
 import { Button, FileUpload, TextField } from '@/components';
 import { CheckLine } from '@/components/Icon';
-import { emailRegex, passwordRegex, phoneRegex } from '@/constants/regex';
+import { phoneRegex } from '@/constants/regex';
+import {
+  businessRegistrationSchema,
+  companyNameSchema,
+  emailSchema,
+  passwordSchema,
+} from '@/lib/yup/schema';
 import filterOnlyNumbers from '@/utils/filterOnlyNumbers';
 import preventSubmitByEnter from '@/utils/preventSubmitByEnter';
 
@@ -17,14 +23,8 @@ import { AuthSubmitButton } from '../../_components';
 import { useSignUp } from '../_hooks';
 
 const schema = yup.object().shape({
-  email: yup
-    .string()
-    .required('이메일을 입력해주세요.')
-    .matches(emailRegex, '올바른 이메일을 입력해주세요.'),
-  password: yup
-    .string()
-    .required('비밀번호를 입력해주세요.')
-    .matches(passwordRegex, '영문 대소문자와 숫자를 포함한 8~16자여야 합니다.'),
+  email: emailSchema,
+  password: passwordSchema,
   passwordConfirm: yup
     .string()
     .required('비밀번호 확인을 입력해주세요.')
@@ -36,11 +36,8 @@ const schema = yup.object().shape({
   storeName: yup.string().required('매장명을 입력해주세요.'),
   address: yup.string().required('주소를 입력해주세요.'),
   detailedAddress: yup.string().notRequired(),
-  companyName: yup.string().required('사업자등록 상 사업자명를 입력해주세요.'),
-  businessRegistrationNumber: yup
-    .string()
-    .matches(/^\d{10}$/, '사업자등록번호는 숫자 10자리여야 합니다.')
-    .required('사업자 번호를 입력해주세요.'),
+  companyName: companyNameSchema,
+  businessRegistrationNumber: businessRegistrationSchema,
   storePhone: yup.string().required('매장 전화번호를 입력해주세요.'),
   businessRegistration: yup.string().required('사업자 등록증을 등록해주세요.'),
 });

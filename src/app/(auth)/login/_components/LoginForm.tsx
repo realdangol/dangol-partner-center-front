@@ -13,7 +13,7 @@ import { CheckBox, TextField } from '@/components';
 import useDialog from '@/components/Dialog/useDialog';
 import { errorCode } from '@/constants/error';
 import { dangolPathname } from '@/constants/pathname';
-import { emailRegex, passwordRegex } from '@/constants/regex';
+import { emailSchema, passwordSchema } from '@/lib/yup/schema';
 import { useLogin } from '@/services/auth/useAuthQuery';
 
 import { AuthSubmitButton } from '../../_components';
@@ -25,14 +25,8 @@ type LoginFormValues = {
 };
 
 const loginSchema = yup.object().shape({
-  email: yup
-    .string()
-    .required('이메일을 입력해주세요.')
-    .matches(emailRegex, '올바른 이메일을 입력해주세요.'),
-  password: yup
-    .string()
-    .required('비밀번호를 입력해주세요.')
-    .matches(passwordRegex, '영문 대소문자와 숫자를 포함한 8~16자여야 합니다.'),
+  email: emailSchema,
+  password: passwordSchema,
 });
 
 const LoginForm = () => {
