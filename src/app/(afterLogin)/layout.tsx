@@ -5,10 +5,11 @@ import React from 'react';
 import { Header, Sidebar } from './_components';
 
 type Props = {
+  children: ReactNode;
   accessToken: string;
 };
 
-const AfterLoginLayout = ({ children }: PropsWithChildren<Props>) => {
+const AfterLoginLayout = ({ children }: Props) => {
   return (
     <>
       <Sidebar />
