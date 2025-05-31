@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import React from 'react';
 
-import withGuest from '@/hoc/withGuest';
+// import withGuest from '@/hoc/withGuest';
 import Logo from '@/public/images/logo.png';
 
 import { AuthPageTitle } from './_components';
@@ -20,4 +20,5 @@ const AuthPageLayout = ({ children }: PropsWithChildren) => {
   );
 };
 
-export default withGuest(AuthPageLayout);
+// export default withGuest(AuthPageLayout);
+export default AuthPageLayout;
