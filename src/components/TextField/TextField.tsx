@@ -16,6 +16,7 @@ type BaseProps = {
   };
   rightIcon?: ReactNode;
   containerClassName?: string;
+  withLength?: boolean;
 };
 
 type NonMultiLineProps = {
@@ -39,6 +40,7 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
       rightIcon,
       multiLine = false,
       containerClassName,
+      withLength = false,
       ...inputProps
     },
     ref,
@@ -110,7 +112,7 @@ const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
             </>
           )}
         </div>
-        {inputProps.maxLength && (
+        {withLength && (
           <p className={`${error ? 'text-error-600' : 'text-neutral-800'} typo-element3 self-end`}>
             {textLength}/{inputProps.maxLength}
           </p>

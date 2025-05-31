@@ -37,7 +37,10 @@ const schema = yup.object().shape({
   address: yup.string().required('주소를 입력해주세요.'),
   detailedAddress: yup.string().notRequired(),
   companyName: yup.string().required('사업자등록 상 사업자명를 입력해주세요.'),
-  businessRegistrationNumber: yup.string().required('사업자 번호를 입력해주세요.'),
+  businessRegistrationNumber: yup
+    .string()
+    .matches(/^\d{10}$/, '사업자등록번호는 숫자 10자리여야 합니다.')
+    .required('사업자 번호를 입력해주세요.'),
   storePhone: yup.string().required('매장 전화번호를 입력해주세요.'),
   businessRegistration: yup.string().required('사업자 등록증을 등록해주세요.'),
 });
@@ -109,7 +112,7 @@ const SignUpStep2 = () => {
     setValue('address', address.address, { shouldValidate: true });
   };
 
-  const handleSeacthAddressClick = () => {
+  const handleSearchAddressClick = () => {
     openDaumPostcodeModal({
       popupTitle: '주소 검색',
       onComplete: handleComplete,
@@ -221,7 +224,7 @@ const SignUpStep2 = () => {
                 }}
               />
             </div>
-            <Button type="button" variant="outlinePrimary" onClick={handleSeacthAddressClick}>
+            <Button type="button" variant="outlinePrimary" onClick={handleSearchAddressClick}>
               주소 검색
             </Button>
           </div>
@@ -247,6 +250,7 @@ const SignUpStep2 = () => {
           helperText={{
             value: errors.businessRegistrationNumber?.message as string,
           }}
+          maxLength={10}
         />
         <TextField
           {...register('storePhone', {
